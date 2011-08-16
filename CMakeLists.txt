@@ -53,7 +53,7 @@ string(TOUPPER ${CMAKE_BUILD_TYPE} BT)
 set(POSTFIX ${CMAKE_${BT}_POSTFIX})
 message("Postfix is ${POSTFIX}")
 
-set (GlibEtcInstallRoot S:/obs/usr/i686-w64-mingw32/sys-root/mingw)
+set (GlibEtcInstallRoot C:/obs/usr/i686-w64-mingw32/sys-root/mingw)
 set (CMAKE_INSTALL_PREFIX ${GlibEtcInstallRoot} CACHE PATH "Override" FORCE)
 
 add_definitions( /wd4273 /wd4290 /wd4250 )
@@ -68,6 +68,7 @@ include_directories(
      ${GlibEtcInstallRoot}/include/gdk-pixbuf-2.0
      ${SIGC_DIR}
      ${SIGC_DIR}/${EXTRA}
+     ${GLIBMM_DIR}/glib
      ${GLIBMM_DIR}/${EXTRA}/glibmm
      ${GLIBMM_DIR}/gio
      ${GLIBMM_DIR}/${EXTRA}/giomm
