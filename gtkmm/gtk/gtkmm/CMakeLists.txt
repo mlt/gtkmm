@@ -69,6 +69,12 @@ fontselection.cc
 frame.cc
 grid.cc
 handlebox.cc
+hvbox.cc
+hvbuttonbox.cc
+hvpaned.cc
+hvscale.cc
+hvscrollbar.cc
+hvseparator.cc
 iconfactory.cc
 iconinfo.cc
 iconset.cc

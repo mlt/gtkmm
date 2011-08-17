@@ -5,11 +5,11 @@ include(macros.cmake)
 MKLINK(gtk+.local gtk+)
 
 set(SIGC_DIR libsigc++-2.2.10)
-set(GLIBMM_DIR glibmm-2.29.11)
+set(GLIBMM_DIR glibmm-2.28.2)
 set(ATKMM_DIR atkmm-2.22.5)
 set(CAIROMM_DIR cairomm-1.10.0)
 set(PANGOMM_DIR pangomm-2.28.2)
-set(GTKMM_DIR gtkmm-3.1.10)
+set(GTKMM_DIR gtkmm-3.1.8)
 set(GtkApiVersion 3.1)
 
 VERSION(${SIGC_DIR} SIGC_VERSION)
@@ -27,8 +27,8 @@ GET(http://ftp.gnome.org/pub/gnome/sources/pangomm/${PANGOMM_VERSION}/${PANGOMM_
 GET(http://ftp.gnome.org/pub/GNOME/sources/libsigc++/${SIGC_VERSION}/${SIGC_DIR}.tar.bz2)
 
 SET(CPACK_PACKAGE_VERSION_MAJOR 3)
-SET(CPACK_PACKAGE_VERSION_MINOR 0)
-SET(CPACK_PACKAGE_VERSION_PATCH 1)
+SET(CPACK_PACKAGE_VERSION_MINOR 1)
+SET(CPACK_PACKAGE_VERSION_PATCH 8)
 set( CPACK_GENERATOR "ZIP" )
 INCLUDE(CPack)
 
@@ -53,7 +53,7 @@ string(TOUPPER ${CMAKE_BUILD_TYPE} BT)
 set(POSTFIX ${CMAKE_${BT}_POSTFIX})
 message("Postfix is ${POSTFIX}")
 
-set (GlibEtcInstallRoot C:/obs/usr/i686-w64-mingw32/sys-root/mingw)
+set (GlibEtcInstallRoot C:/obs/usr/i686-w64-mingw32/sys-root/mingw CACHE PATH "GlibEtcInstallRoot")
 set (CMAKE_INSTALL_PREFIX ${GlibEtcInstallRoot} CACHE PATH "Override" FORCE)
 
 add_definitions( /wd4273 /wd4290 /wd4250 )
@@ -104,3 +104,5 @@ add_subdirectory(${GTKMM_DIR}/demos/gtk-demo)
 configure_file(MSVC/gtkmm3.vsprops.in ${CMAKE_CURRENT_SOURCE_DIR}/MSVC/gtkmm3${POSTFIX}.vsprops @ONLY)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/MSVC/gtkmm3${POSTFIX}.vsprops DESTINATION "MSVC")
 #set(RuntimeLibrary 3) # for debug
+
+configure_file(README.md.in ${CMAKE_CURRENT_SOURCE_DIR}/README.md @ONLY)

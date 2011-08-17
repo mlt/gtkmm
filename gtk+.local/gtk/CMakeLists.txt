@@ -15,12 +15,12 @@ add_definitions ( -DGTK_COMPILATION -DG_LOG_DOMAIN="Gtk"
 -DGTK_BINARY_VERSION="${GtkBinaryVersion}"
 )
 
+add_definitions( "-Dround=(int)" ) # round() is absent in math.h @ MS VC++
+
 set ( GTK_SRCS
 fnmatch.c
 gen-paper-names.c
 gtk.h
-gtk9slice.c
-gtk9slice.h
 gtkaboutdialog.c
 gtkaboutdialog.h
 gtkaccelgroup.c
@@ -32,7 +32,6 @@ gtkaccelmap.c
 gtkaccelmap.h
 gtkaccessible.c
 gtkaccessible.h
-gtkaccessibleprivate.h
 gtkaction.c
 gtkaction.h
 gtkactiongroup.c
@@ -77,6 +76,7 @@ gtkbindings.h
 gtkbindingsprivate.h
 gtkborder.c
 gtkborder.h
+gtkborderimage.c
 gtkbox.c
 gtkbox.h
 gtkbuildable.c
@@ -260,6 +260,7 @@ gtklinkbutton.c
 gtklinkbutton.h
 gtkliststore.c
 gtkliststore.h
+gtklockbutton.c
 gtkmain.c
 gtkmain.h
 gtkmainprivate.h
@@ -364,6 +365,7 @@ gtkrecentfilter.c
 gtkrecentfilter.h
 gtkrecentmanager.c
 gtkrecentmanager.h
+gtkroundedbox.c
 gtkscale.c
 gtkscale.h
 gtkscalebutton.c

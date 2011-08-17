@@ -25,10 +25,10 @@ ln tool from http://schinagl.priv.at/nt/ln/ln.html should be used as fsutil requ
 
 Builds with
 
-    libsigc++-2.2.10
-    glibmm-2.28.2
-    atkmm-2.22.5
-    cairomm-1.10.0
-    pangomm-2.28.2
-    gtkmm-3.1.8
-    
+    @SIGC_DIR@
+    @GLIBMM_DIR@
+    @ATKMM_DIR@
+    @CAIROMM_DIR@
+    @PANGOMM_DIR@
+    @GTKMM_DIR@
+    @GtkBinaryVersion@
