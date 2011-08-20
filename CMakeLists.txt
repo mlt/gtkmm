@@ -10,7 +10,8 @@ set(ATKMM_DIR atkmm-2.22.5)
 set(CAIROMM_DIR cairomm-1.10.0)
 set(PANGOMM_DIR pangomm-2.28.2)
 set(GTKMM_DIR gtkmm-3.1.8)
-set(GtkApiVersion 3.1)
+set(XMLMM_DIR libxml++-2.34.1)
+set(GSTREAMERMM_DIR gstreamermm-0.10.10)
 
 VERSION(${SIGC_DIR} SIGC_VERSION)
 VERSION(${GLIBMM_DIR} GLIBMM_VERSION)
@@ -18,6 +19,13 @@ VERSION(${ATKMM_DIR} ATKMM_VERSION)
 VERSION(${CAIROMM_DIR} CAIROMM_VERSION)
 VERSION(${PANGOMM_DIR} PANGOMM_VERSION)
 VERSION(${GTKMM_DIR} GTKMM_VERSION)
+VERSION(${XMLMM_DIR} XMLMM_VERSION)
+VERSION(${GSTREAMERMM_DIR} GSTREAMERMM_VERSION)
+set(GtkApiVersion 3.1)
+
+if(NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/usr)
+OBS()
+endif()
 
 GET(http://ftp.gnome.org/pub/GNOME/sources/atkmm/${ATKMM_VERSION}/${ATKMM_DIR}.tar.bz2)
 GET(http://cairographics.org/releases/${CAIROMM_DIR}.tar.gz)
@@ -25,11 +33,15 @@ GET(ftp://ftp.gnome.org/pub/GNOME/sources/glibmm/${GLIBMM_VERSION}/${GLIBMM_DIR}
 GET(ftp://ftp.gnome.org/pub/GNOME/sources/gtkmm/${GTKMM_VERSION}/${GTKMM_DIR}.tar.bz2)
 GET(http://ftp.gnome.org/pub/gnome/sources/pangomm/${PANGOMM_VERSION}/${PANGOMM_DIR}.tar.bz2)
 GET(http://ftp.gnome.org/pub/GNOME/sources/libsigc++/${SIGC_VERSION}/${SIGC_DIR}.tar.bz2)
+GET(http://ftp.gnome.org/pub/GNOME/sources/libxml++/${XMLMM_VERSION}/${XMLMM_DIR}.tar.bz2)
+GET(http://ftp.gnome.org/pub/GNOME/sources/gstreamermm/${GSTREAMERMM_VERSION}/${GSTREAMERMM_DIR}.tar.bz2)
 
 SET(CPACK_PACKAGE_VERSION_MAJOR 3)
 SET(CPACK_PACKAGE_VERSION_MINOR 1)
-SET(CPACK_PACKAGE_VERSION_PATCH 8)
 set( CPACK_GENERATOR "ZIP" )
+TODAY(TWEAK)
+SET(CPACK_PACKAGE_VERSION_PATCH "8-${TWEAK}")
+
 INCLUDE(CPack)
 
 # Use this or uncomment next line for release build "\Program Files\CMake 2.8\bin\cmake.exe" -D CMAKE_BUILD_TYPE=RELEASE ..
@@ -53,7 +65,7 @@ string(TOUPPER ${CMAKE_BUILD_TYPE} BT)
 set(POSTFIX ${CMAKE_${BT}_POSTFIX})
 message("Postfix is ${POSTFIX}")
 
-set (GlibEtcInstallRoot C:/obs/usr/i686-w64-mingw32/sys-root/mingw CACHE PATH "GlibEtcInstallRoot")
+set (GlibEtcInstallRoot ${CMAKE_CURRENT_SOURCE_DIR}/usr/i686-w64-mingw32/sys-root/mingw CACHE PATH "GlibEtcInstallRoot")
 set (CMAKE_INSTALL_PREFIX ${GlibEtcInstallRoot} CACHE PATH "Override" FORCE)
 
 add_definitions( /wd4273 /wd4290 /wd4250 )
@@ -100,6 +112,8 @@ add_subdirectory(gtk+)
 add_subdirectory(${GTKMM_DIR}/gdk/gdkmm)
 add_subdirectory(${GTKMM_DIR}/gtk/gtkmm)
 add_subdirectory(${GTKMM_DIR}/demos/gtk-demo)
+add_subdirectory(${XMLMM_DIR}/libxml++)
+#add_subdirectory(${GSTREAMERMM_DIR}/gstreamer/gstreamermm)
 
 configure_file(MSVC/gtkmm3.vsprops.in ${CMAKE_CURRENT_SOURCE_DIR}/MSVC/gtkmm3${POSTFIX}.vsprops @ONLY)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/MSVC/gtkmm3${POSTFIX}.vsprops DESTINATION "MSVC")

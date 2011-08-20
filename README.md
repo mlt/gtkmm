@@ -11,6 +11,15 @@ Native GTKMM builds for Win32 with MS VC++ lag behind those with gcc.
 * It is complicated to build MM counterpart from git on Win32 as they heavily use m4 macro processor
 * <del>Download source code release for corresponding subfolders</del>
 
+
+http://www.bosmans.ch/pulseaudio/download-mingw-rpm.py
+
+\Python32\python download-mingw-rpm.py --no-clean --deps libxml2 libxml2-devel atk atk-devel libcairo2 libcairo-gobject2 cairo-devel pango pango-devel gstreamer gstreamer-devel gdk-pixbuf gdk-pixbuf-devel
+
+C:\obs\usr\i686-w64-mingw32\sys-root\mingw\bin>\workspace\gtkmm.build\glibmm-2.28.2\MSVC_Net2008\gendef\gendef.exe glib-2.0.def libglib-2.0-0.dll libglib-2.0-0.dll
+
+lib /def:glib-2.0.def
+
 ## Problems
 
 * There may be glitches with path names

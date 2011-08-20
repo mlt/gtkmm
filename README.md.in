@@ -7,6 +7,7 @@ Native GTKMM builds for Win32 with MS VC++ lag behind those with gcc.
 ## How
 
 * [Use OBS](http://mail.gnome.org/archives/gtk-list/2011-March/msg00111.html) (openSUSE Build Service) for all prerequisites
+ + [Nice script by Maarten Bosmans](http://www.bosmans.ch/pulseaudio/download-mingw-rpm.py) downloads everything: \Python32\python download-mingw-rpm.py --no-clean --deps libxml2 libxml2-devel atk atk-devel libcairo2 libcairo-gobject2 cairo-devel pango pango-devel gstreamer gstreamer-devel gdk-pixbuf gdk-pixbuf-devel
 * You'll need perl to build gtk+ git submodule
 * It is complicated to build MM counterpart from git on Win32 as they heavily use m4 macro processor
 * <del>Download source code release for corresponding subfolders</del>
@@ -31,4 +32,5 @@ Builds with
     @CAIROMM_DIR@
     @PANGOMM_DIR@
     @GTKMM_DIR@
+    @XMLMM_DIR@
     @GtkBinaryVersion@

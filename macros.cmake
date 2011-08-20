@@ -46,3 +46,28 @@ endmacro()
 macro(VERSION DIR VER)
 string(REGEX REPLACE ".+-([0-9]+)[.]([0-9]+)[.].+" "\\1.\\2" ${VER} ${DIR})
 endmacro()
+
+MACRO (TODAY RESULT)
+    IF (WIN32)
+        EXECUTE_PROCESS(COMMAND "cmd" "/C" "date /T" OUTPUT_VARIABLE ${RESULT})
+        string(REGEX REPLACE ".*(..)/(..)/(....).*" "\\3\\2\\1" ${RESULT} ${${RESULT}})
+    ELSEIF(UNIX)
+        EXECUTE_PROCESS(COMMAND "date" "+%d/%m/%Y" OUTPUT_VARIABLE ${RESULT})
+        string(REGEX REPLACE "(..)/(..)/(....).*" "\\3\\2\\1" ${RESULT} ${${RESULT}})
+    ELSE (WIN32)
+        MESSAGE(SEND_ERROR "date not implemented")
+        SET(${RESULT} 000000)
+    ENDIF (WIN32)
+ENDMACRO (TODAY)
+
+# should have 7z, patch, and python 3.2 in the path
+macro(OBS)
+execute_process(COMMAND C:\\Python32\\python.exe download-mingw-rpm.py --no-clean --deps libxml2 libxml2-devel atk atk-devel libcairo2 libcairo-gobject2 cairo-devel pango pango-devel gstreamer gstreamer-devel gdk-pixbuf gdk-pixbuf-devel
+WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+execute_process(COMMAND C:\\Python32\\python.exe a2lib.py
+WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+execute_process(COMMAND patch -p0 --binary -i patches\\fontconfig_h.patch
+WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+execute_process(COMMAND patch -p0 --binary -i patches\\glib_gmessages_h.patch
+WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+endmacro()
