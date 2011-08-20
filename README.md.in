@@ -33,4 +33,5 @@ Builds with
     @PANGOMM_DIR@
     @GTKMM_DIR@
     @XMLMM_DIR@
+    @GSTREAMERMM_DIR@
     @GtkBinaryVersion@

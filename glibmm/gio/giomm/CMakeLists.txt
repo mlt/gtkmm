@@ -82,7 +82,7 @@ volumemonitor.cc
 wrap_init.cc
 )
 
-add_definitions( -DGIOMM_DLL -DGIOMM_BUILD -D_WINDLL )
+add_definitions( -DGIOMM_DLL -DGIOMM_BUILD -D_WINDLL -DG_HAVE_ISO_VARARGS )
 add_library(giomm-${GLIBMM_VERSION} SHARED ${GIOMM_SRCS} giomm.def ../../${EXTRA}/giomm/giomm.rc)
 target_link_libraries(giomm-${GLIBMM_VERSION} glib-2.0.lib gobject-2.0.lib gmodule-2.0.lib
 gio-2.0.lib sigc-${SIGC_VERSION} glibmm-${GLIBMM_VERSION})

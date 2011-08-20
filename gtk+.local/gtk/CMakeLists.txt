@@ -854,3 +854,8 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/gtk-${GtkApiVersion}${POSTFIX}.pdb DES
 
 install(DIRECTORY ./ DESTINATION include/gtk-${GtkApiVersion}/gtk
 FILES_MATCHING PATTERN "*.h")
+
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/org.gtk.Settings.FileChooser.gschema.xml
+${GlibEtcInstallRoot}/share/glib-2.0/schemas/gschema.dtd
+DESTINATION share/glib-2.0/schemas)
+install(CODE "execute_process(COMMAND ${GlibEtcInstallRoot}/bin/glib-compile-schemas.exe . WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX}/share/glib-2.0/schemas)")

@@ -11,7 +11,7 @@ set(CAIROMM_DIR cairomm-1.10.0)
 set(PANGOMM_DIR pangomm-2.28.2)
 set(GTKMM_DIR gtkmm-3.1.8)
 set(XMLMM_DIR libxml++-2.34.1)
-set(GSTREAMERMM_DIR gstreamermm-0.10.10)
+set(GSTREAMERMM_DIR gstreamermm-0.10.9)
 
 VERSION(${SIGC_DIR} SIGC_VERSION)
 VERSION(${GLIBMM_DIR} GLIBMM_VERSION)
@@ -68,6 +68,7 @@ message("Postfix is ${POSTFIX}")
 set (GlibEtcInstallRoot ${CMAKE_CURRENT_SOURCE_DIR}/usr/i686-w64-mingw32/sys-root/mingw CACHE PATH "GlibEtcInstallRoot")
 set (CMAKE_INSTALL_PREFIX ${GlibEtcInstallRoot} CACHE PATH "Override" FORCE)
 
+add_definitions( -DG_HAVE_ISO_VARARGS )
 add_definitions( /wd4273 /wd4290 /wd4250 )
 
 include_directories(
@@ -113,10 +114,12 @@ add_subdirectory(${GTKMM_DIR}/gdk/gdkmm)
 add_subdirectory(${GTKMM_DIR}/gtk/gtkmm)
 add_subdirectory(${GTKMM_DIR}/demos/gtk-demo)
 add_subdirectory(${XMLMM_DIR}/libxml++)
-#add_subdirectory(${GSTREAMERMM_DIR}/gstreamer/gstreamermm)
+add_subdirectory(${GSTREAMERMM_DIR})
 
 configure_file(MSVC/gtkmm3.vsprops.in ${CMAKE_CURRENT_SOURCE_DIR}/MSVC/gtkmm3${POSTFIX}.vsprops @ONLY)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/MSVC/gtkmm3${POSTFIX}.vsprops DESTINATION "MSVC")
 #set(RuntimeLibrary 3) # for debug
 
 configure_file(README.md.in ${CMAKE_CURRENT_SOURCE_DIR}/README.md @ONLY)
+
+install(DIRECTORY ${GlibEtcInstallRoot}/ DESTINATION .)

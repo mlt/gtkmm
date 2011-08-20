@@ -45,7 +45,12 @@ add_custom_command (OUTPUT libxml++.def
 COMMAND ECHO Will be generated later > libxml++.def
 )
 add_custom_command(TARGET xmlpp-${XMLMM_VERSION} PRE_LINK
-COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/libxml++.def xml++-${XMLMM_VERSION}${POSTFIX}.dll ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/libxmlpp-${XMLMM_VERSION}.dir/*.obj
+COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/libxml++.def xml++-${XMLMM_VERSION}${POSTFIX}.dll
+  ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/xmlpp-${XMLMM_VERSION}.dir/*.obj
+  ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/xmlpp-${XMLMM_VERSION}.dir/io/*.obj 
+  ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/xmlpp-${XMLMM_VERSION}.dir/nodes/*.obj 
+  ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/xmlpp-${XMLMM_VERSION}.dir/parsers/*.obj 
+  ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/xmlpp-${XMLMM_VERSION}.dir/validators/*.obj 
 )
 
 target_link_libraries(xmlpp-${XMLMM_VERSION} xml2.lib glibmm-${GLIBMM_VERSION} giomm-${GLIBMM_VERSION} sigc-${SIGC_VERSION})
@@ -55,9 +60,9 @@ LIBRARY DESTINATION "lib"
 ARCHIVE DESTINATION "lib"
 RUNTIME DESTINATION "bin")
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libxml++-${XMLMM_VERSION}${POSTFIX}.pdb DESTINATION "bin" CONFIGURATIONS DEBUG)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/xml++-${XMLMM_VERSION}${POSTFIX}.pdb DESTINATION "bin" CONFIGURATIONS DEBUG)
 
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../../${EXTRA}/libxml++/libxml++config.h DESTINATION "lib/libxml++-${XMLMM_VERSION}/include")
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../${EXTRA}/libxml++/libxml++config.h DESTINATION "lib/libxml++-${XMLMM_VERSION}/include")
 
 install(DIRECTORY ../ DESTINATION include/libxml++-${XMLMM_VERSION}/ FILES_MATCHING PATTERN "*.h"
 PATTERN "src" EXCLUDE

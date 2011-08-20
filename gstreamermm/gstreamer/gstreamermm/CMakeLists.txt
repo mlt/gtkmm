@@ -6,7 +6,7 @@ include_directories(
      ..
 )
 
-add_definitions(-DLIBXMLPP_BUILD -DGSTREAMERMM_BUILD -D_WINDLL -DGLIBMM_DLL -DGLIBMM_MSC -UGLIBMM_API)
+add_definitions(-DLIBXMLPP_BUILD -DGSTREAMERMM_BUILD -D_WINDLL -DGLIBMM_DLL -DGLIBMM_MSC -DG_HAVE_ISO_VARARGS "-DGST_MINI_OBJECT_FLAG_RESERVED1=(1<<1)")
 
 set(GSTREAMERMM_SRCS
 adder.cc
@@ -41,8 +41,6 @@ colorbalance.cc
 colorbalancechannel.cc
 decodebin.cc
 decodebin2.cc
-discoverer.cc
-discovererinfo.cc
 element.cc
 elementfactory.cc
 enums.cc
@@ -57,7 +55,6 @@ filesink.cc
 filesrc.cc
 filter.cc
 format.cc
-funnel.cc
 gdpdepay.cc
 gdppay.cc
 ghostpad.cc
@@ -71,7 +68,6 @@ identity.cc
 index.cc
 indexfactory.cc
 init.cc
-inputselector.cc
 interface.cc
 iterator.cc
 message.cc
@@ -85,7 +81,6 @@ navigation.cc
 object.cc
 oggdemux.cc
 oggmux.cc
-outputselector.cc
 pad.cc
 padtemplate.cc
 parse.cc
@@ -131,7 +126,6 @@ typefindfactory.cc
 uridecodebin.cc
 urihandler.cc
 value.cc
-valve.cc
 version.cc
 videoorientation.cc
 videorate.cc
@@ -160,7 +154,7 @@ add_custom_command(TARGET gstreamermm-${GSTREAMERMM_VERSION} PRE_LINK
 COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/gstreamermm.def gstreamermm-${GSTREAMERMM_VERSION}${POSTFIX}.dll ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/gstreamermm-${GSTREAMERMM_VERSION}.dir/*.obj
 )
 
-target_link_libraries(gstreamermm-${GSTREAMERMM_VERSION} gstreamer-0.10.lib sigc-${SIGC_VERSION}) #glibmm-${GLIBMM_VERSION} giomm-${GLIBMM_VERSION}
+target_link_libraries(gstreamermm-${GSTREAMERMM_VERSION} gstreamer-0.10.lib sigc-${SIGC_VERSION} gstinterfaces-0.10.lib glibmm-${GLIBMM_VERSION} xmlpp-${XMLMM_VERSION} gstaudio-0.10.lib gstbase-0.10.lib gstcdda-0.10.lib gstvideo-0.10.lib ) #glibmm-${GLIBMM_VERSION} giomm-${GLIBMM_VERSION}
 
 install(TARGETS gstreamermm-${GSTREAMERMM_VERSION}
 LIBRARY DESTINATION "lib"
@@ -169,7 +163,7 @@ RUNTIME DESTINATION "bin")
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/gstreamermm-${GSTREAMERMM_VERSION}${POSTFIX}.pdb DESTINATION "bin" CONFIGURATIONS DEBUG)
 
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../../${EXTRA}/gstreamermm/gstreamermmconfig.h DESTINATION "lib/gstreamermm-${GSTREAMERMM_VERSION}/include")
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../gstreamermmconfig.h DESTINATION "lib/gstreamermm-${GSTREAMERMM_VERSION}/include")
 
 install(DIRECTORY ../ DESTINATION include/gstreamermm-${GSTREAMERMM_VERSION}/ FILES_MATCHING PATTERN "*.h"
 PATTERN "src" EXCLUDE

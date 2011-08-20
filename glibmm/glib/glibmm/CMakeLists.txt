@@ -61,7 +61,7 @@ wrap.cc
 wrap_init.cc
 )
 
-add_definitions( -DGLIBMM_DLL -DGLIBMM_BUILD -D_WINDLL )
+add_definitions( -DGLIBMM_DLL -DGLIBMM_BUILD -D_WINDLL -DG_HAVE_ISO_VARARGS )
 add_library(glibmm-${GLIBMM_VERSION} SHARED ${GLIBMM_SRCS} glibmm.def ../../${EXTRA}/glibmm/glibmm.rc)
 
 add_custom_command (OUTPUT glibmm.def

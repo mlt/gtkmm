@@ -62,12 +62,12 @@ ENDMACRO (TODAY)
 
 # should have 7z, patch, and python 3.2 in the path
 macro(OBS)
-execute_process(COMMAND C:\\Python32\\python.exe download-mingw-rpm.py --no-clean --deps libxml2 libxml2-devel atk atk-devel libcairo2 libcairo-gobject2 cairo-devel pango pango-devel gstreamer gstreamer-devel gdk-pixbuf gdk-pixbuf-devel
+execute_process(COMMAND C:\\Python32\\python.exe download-mingw-rpm.py --no-clean --deps libxml2 libxml2-devel atk atk-devel libcairo2 libcairo-gobject2 cairo-devel pango pango-devel gstreamer gstreamer-devel gst-plugins-base gst-plugins-base-devel gdk-pixbuf gdk-pixbuf-devel glib2-tools
 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 execute_process(COMMAND C:\\Python32\\python.exe a2lib.py
 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 execute_process(COMMAND patch -p0 --binary -i patches\\fontconfig_h.patch
 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-execute_process(COMMAND patch -p0 --binary -i patches\\glib_gmessages_h.patch
+execute_process(COMMAND patch -p0 --binary -i patches\\glibconfig_h.patch
 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 endmacro()

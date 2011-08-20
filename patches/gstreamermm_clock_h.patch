@@ -1,0 +1,31 @@
+--- gstreamer/gstreamermm/clock.h.orig	Sat Aug 20 13:19:09 2011
++++ gstreamer/gstreamermm/clock.h	Sat Aug 20 13:19:30 2011
+@@ -52,23 +52,23 @@
+ 
+ /** A constant to define an undefined clock time.
+  */
+-static GLIBMM_API const ClockTime CLOCK_TIME_NONE = GST_CLOCK_TIME_NONE;
++static const ClockTime CLOCK_TIME_NONE = GST_CLOCK_TIME_NONE;
+ 
+ /** A constant that defines one GStreamer second.
+  */
+-static GLIBMM_API const ClockTime SECOND = GST_SECOND;
++static const ClockTime SECOND = GST_SECOND;
+ 
+ /** A constant that defines one GStreamer millisecond.
+  */
+-static GLIBMM_API const ClockTime MILLI_SECOND = GST_MSECOND;
++static const ClockTime MILLI_SECOND = GST_MSECOND;
+ 
+ /** A constant that defines one GStreamer microsecond.
+  */
+-static GLIBMM_API const ClockTime MICRO_SECOND = GST_USECOND;
++static const ClockTime MICRO_SECOND = GST_USECOND;
+ 
+ /** A constant that defines one GStreamer nanosecond.
+  */
+-static GLIBMM_API const ClockTime NANO_SECOND = GST_NSECOND;
++static const ClockTime NANO_SECOND = GST_NSECOND;
+ 
+ /** @addtogroup gstreamermmEnums gstreamermm Enums and Flags */
+ 
