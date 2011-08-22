@@ -21,7 +21,7 @@ endmacro()
 macro(GET URL)
 get_filename_component(FILE ${URL} NAME)
 string(REGEX REPLACE "(.+)-.+" "\\1" NAME ${FILE})
-string(REGEX REPLACE ".+-([0-9]+)[.]([0-9]+)[.]([0-9]+)[.].+" "\\1.\\2.\\3" VERSION ${FILE})
+string(REGEX REPLACE ".+-([0-9.]+)[.].+" "\\1" VERSION ${FILE})
 if(NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${NAME}-${VERSION})
   message("Source directory ${NAME}-${VERSION} is missing")
   # Download stuff
@@ -60,9 +60,42 @@ MACRO (TODAY RESULT)
     ENDIF (WIN32)
 ENDMACRO (TODAY)
 
+SET(PACKAGES_OBS
+libxml2
+libxml2-devel
+atk
+atk-devel
+libcairo2
+libcairo-gobject2
+cairo-devel
+pango
+pango-devel
+gstreamer
+gstreamer-devel
+gst-plugins-base
+gst-plugins-base-devel
+gst-plugins-bad
+gst-plugins-bad-devel
+gdk-pixbuf
+gdk-pixbuf-devel
+glib2-tools
+)
+
+SET(PACKAGES_FEDORA
+libxml2
+atk
+cairo
+pango
+gstreamer
+gstreamer-plugins-base
+gstreamer-plugins-bad-free
+gdk-pixbuf
+)
+
 # should have 7z, patch, and python 3.2 in the path
 macro(OBS)
-execute_process(COMMAND C:\\Python32\\python.exe download-mingw-rpm.py --no-clean --deps libxml2 libxml2-devel atk atk-devel libcairo2 libcairo-gobject2 cairo-devel pango pango-devel gstreamer gstreamer-devel gst-plugins-base gst-plugins-base-devel gdk-pixbuf gdk-pixbuf-devel glib2-tools
+#execute_process(COMMAND C:\\Python32\\python.exe download-mingw-rpm.py --no-clean --deps ${PACKAGES_OBS}
+execute_process(COMMAND C:\\Python32\\python.exe download-mingw-rpm.py -u http://build1.openftd.org/fedora-cross/i386/ --no-clean --deps ${PACKAGES_FEDORA}
 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 execute_process(COMMAND C:\\Python32\\python.exe a2lib.py
 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})

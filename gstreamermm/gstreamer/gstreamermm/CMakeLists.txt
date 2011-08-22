@@ -68,6 +68,7 @@ identity.cc
 index.cc
 indexfactory.cc
 init.cc
+inputselector.cc
 interface.cc
 iterator.cc
 message.cc
@@ -81,6 +82,7 @@ navigation.cc
 object.cc
 oggdemux.cc
 oggmux.cc
+outputselector.cc
 pad.cc
 padtemplate.cc
 parse.cc
@@ -125,6 +127,7 @@ typefindelement.cc
 typefindfactory.cc
 uridecodebin.cc
 urihandler.cc
+valve.cc
 value.cc
 version.cc
 videoorientation.cc

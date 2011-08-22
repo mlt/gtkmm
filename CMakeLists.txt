@@ -11,7 +11,7 @@ set(CAIROMM_DIR cairomm-1.10.0)
 set(PANGOMM_DIR pangomm-2.28.2)
 set(GTKMM_DIR gtkmm-3.1.8)
 set(XMLMM_DIR libxml++-2.34.1)
-set(GSTREAMERMM_DIR gstreamermm-0.10.9)
+set(GSTREAMERMM_DIR gstreamermm-0.10.9.1)
 
 VERSION(${SIGC_DIR} SIGC_VERSION)
 VERSION(${GLIBMM_DIR} GLIBMM_VERSION)
@@ -34,7 +34,11 @@ GET(ftp://ftp.gnome.org/pub/GNOME/sources/gtkmm/${GTKMM_VERSION}/${GTKMM_DIR}.ta
 GET(http://ftp.gnome.org/pub/gnome/sources/pangomm/${PANGOMM_VERSION}/${PANGOMM_DIR}.tar.bz2)
 GET(http://ftp.gnome.org/pub/GNOME/sources/libsigc++/${SIGC_VERSION}/${SIGC_DIR}.tar.bz2)
 GET(http://ftp.gnome.org/pub/GNOME/sources/libxml++/${XMLMM_VERSION}/${XMLMM_DIR}.tar.bz2)
+if(NOT EXISTS ${GSTREAMERMM_DIR})
 GET(http://ftp.gnome.org/pub/GNOME/sources/gstreamermm/${GSTREAMERMM_VERSION}/${GSTREAMERMM_DIR}.tar.bz2)
+execute_process(COMMAND patch -p0 --binary -i ${CMAKE_CURRENT_SOURCE_DIR}/patches/gstreamermm_clock_h.patch
+WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${GSTREAMERMM_DIR})
+endif()
 
 SET(CPACK_PACKAGE_VERSION_MAJOR 3)
 SET(CPACK_PACKAGE_VERSION_MINOR 1)
@@ -66,7 +70,7 @@ set(POSTFIX ${CMAKE_${BT}_POSTFIX})
 message("Postfix is ${POSTFIX}")
 
 set (GlibEtcInstallRoot ${CMAKE_CURRENT_SOURCE_DIR}/usr/i686-w64-mingw32/sys-root/mingw CACHE PATH "GlibEtcInstallRoot")
-set (CMAKE_INSTALL_PREFIX ${GlibEtcInstallRoot} CACHE PATH "Override" FORCE)
+set (CMAKE_INSTALL_PREFIX C:/gtkmm CACHE PATH "Installation prefix")
 
 add_definitions( -DG_HAVE_ISO_VARARGS )
 add_definitions( /wd4273 /wd4290 /wd4250 )

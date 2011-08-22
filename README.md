@@ -33,5 +33,5 @@ Builds with
     pangomm-2.28.2
     gtkmm-3.1.8
     libxml++-2.34.1
-    gstreamermm-0.10.9
+    gstreamermm-0.10.9.1
     
