@@ -6,7 +6,7 @@ Native GTKMM builds for Win32 with MS VC++ lag behind those with gcc.
 
 ## How
 
-* [Use OBS](http://mail.gnome.org/archives/gtk-list/2011-March/msg00111.html) (openSUSE Build Service) for all prerequisites
+* <del>[Use OBS](http://mail.gnome.org/archives/gtk-list/2011-March/msg00111.html) (openSUSE Build Service)</del> [Fedora-mingw binaries](http://build1.openftd.org/fedora-cross/i386/RPMS_noarch/) for all prerequisites
  + [Nice script by Maarten Bosmans](http://www.bosmans.ch/pulseaudio/download-mingw-rpm.py) downloads everything: \Python32\python download-mingw-rpm.py --no-clean --deps libxml2 libxml2-devel atk atk-devel libcairo2 libcairo-gobject2 cairo-devel pango pango-devel gstreamer gstreamer-devel gdk-pixbuf gdk-pixbuf-devel
 * You'll need perl to build gtk+ git submodule
 * It is complicated to build MM counterpart from git on Win32 as they heavily use m4 macro processor
@@ -26,12 +26,16 @@ ln tool from http://schinagl.priv.at/nt/ln/ln.html should be used as fsutil requ
 
 Builds with
 
-    @SIGC_DIR@
-    @GLIBMM_DIR@
-    @ATKMM_DIR@
-    @CAIROMM_DIR@
-    @PANGOMM_DIR@
-    @GTKMM_DIR@
-    @XMLMM_DIR@
-    @GSTREAMERMM_DIR@
-    @GtkBinaryVersion@
+    [@SIGC_DIR@](@SIGC_DIR_URL@)
+    [@GLIBMM_DIR@](@GLIBMM_DIR_URL@)
+    [@ATKMM_DIR@](@ATKMM_DIR_URL@)
+    [@CAIROMM_DIR@](@CAIROMM_DIR_URL@)
+    [@PANGOMM_DIR@](@PANGOMM_DIR_URL@)
+    [@GTKMM_DIR@](@GTKMM_DIR_URL@)
+    [@XMLMM_DIR@](@XMLMM_DIR_URL@)
+    [@GSTREAMERMM_DIR@](@GSTREAMERMM_DIR_URL@)
+    GTK+ (See git submodule SHA)
+
+## TODO
+
+* Consider using ExternalProject CMake module

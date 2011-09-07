@@ -15,7 +15,7 @@ add_definitions ( -DGTK_COMPILATION -DG_LOG_DOMAIN="Gtk"
 -DGTK_BINARY_VERSION="${GtkBinaryVersion}"
 )
 
-add_definitions( "-Dround=(int)" ) # round() is absent in math.h @ MS VC++
+add_subdirectory(a11y)
 
 set ( GTK_SRCS
 fnmatch.c
@@ -145,6 +145,7 @@ gtkcssparser.c
 gtkcssprovider.c
 gtkcssprovider.h
 gtkcssproviderprivate.h
+gtkcsssection.c
 gtkcssselector.c
 #gtkcssstringfuncs.c
 gtkcsstypes.c
@@ -197,6 +198,8 @@ gtkfixed.c
 gtkfixed.h
 gtkfontbutton.c
 gtkfontbutton.h
+gtkfontchooser.c
+gtkfontchooserdialog.c
 gtkfontsel.c
 gtkfontsel.h
 gtkframe.c
@@ -303,6 +306,7 @@ gtkoffscreenwindow.h
 gtkorientable.c
 gtkorientable.h
 gtkorientableprivate.h
+gtkoverlay.c
 gtkpagesetup.c
 gtkpagesetup.h
 gtkpaned.c
@@ -611,7 +615,8 @@ gtkcolorseldialog.h
 gtkcombobox.h		
 gtkcomboboxtext.h	
 gtkcontainer.h		
-gtkcssprovider.h	
+gtkcssprovider.h
+gtkcsssection.h
 gtkdebug.h		
 gtkdialog.h		
 gtkdnd.h		
@@ -842,7 +847,7 @@ add_library(gtk-${GtkApiVersion} SHARED ${GTK_SRCS} gtk.def gtk-win32.rc)
 #				IMPORT_SUFFIX "-${GtkApiVersion}.lib"
 #)
 
-target_link_libraries(gtk-${GtkApiVersion} gdk-${GtkApiVersion} modules-input
+target_link_libraries(gtk-${GtkApiVersion} gdk-${GtkApiVersion} modules-input a11y
  pangowin32-1.0 atk-1.0 comctl32 )
 
 install(TARGETS gtk-${GtkApiVersion}
@@ -856,6 +861,6 @@ install(DIRECTORY ./ DESTINATION include/gtk-${GtkApiVersion}/gtk
 FILES_MATCHING PATTERN "*.h")
 
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/org.gtk.Settings.FileChooser.gschema.xml
-${GlibEtcInstallRoot}/share/glib-2.0/schemas/gschema.dtd
+${CMAKE_INSTALL_PREFIX}/share/glib-2.0/schemas/gschema.dtd
 DESTINATION share/glib-2.0/schemas)
 install(CODE "execute_process(COMMAND ${GlibEtcInstallRoot}/bin/glib-compile-schemas.exe . WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX}/share/glib-2.0/schemas)")

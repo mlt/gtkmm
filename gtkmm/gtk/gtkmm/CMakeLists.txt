@@ -13,6 +13,7 @@ appchooser.cc
 appchooserbutton.cc
 appchooserdialog.cc
 appchooserwidget.cc
+application.cc
 arrow.cc
 aspectframe.cc
 assistant.cc
@@ -65,6 +66,8 @@ filechooserwidget.cc
 filefilter.cc
 fixed.cc
 fontbutton.cc
+fontchooser.cc
+fontchooserdialog.cc
 fontselection.cc
 frame.cc
 grid.cc
@@ -210,7 +213,7 @@ add_custom_command(TARGET gtkmm-${GTKMM_VERSION} PRE_LINK
 COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/gtkmm.def gtkmm-${GTKMM_VERSION}${POSTFIX}.dll ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/gtkmm-${GTKMM_VERSION}.dir/*.obj
 )
 
-target_link_libraries(gtkmm-${GTKMM_VERSION} gdkmm-${GTKMM_VERSION} glibmm-${GLIBMM_VERSION} giomm-${GLIBMM_VERSION} atkmm-${ATKMM_VERSION} pangomm-${GLIBMM_VERSION} sigc-${SIGC_VERSION} cairomm-${CAIROMM_VERSION} gtk-${GtkApiVersion})
+target_link_libraries(gtkmm-${GTKMM_VERSION} gdkmm-${GTKMM_VERSION} glibmm-${GLIBMM_VERSION} giomm-${GLIBMM_VERSION} atkmm-${ATKMM_VERSION} pangomm-${PANGOMM_VERSION} sigc-${SIGC_VERSION} cairomm-${CAIROMM_VERSION} gtk-${GtkApiVersion})
 
 install(TARGETS gtkmm-${GTKMM_VERSION}
 LIBRARY DESTINATION "lib"

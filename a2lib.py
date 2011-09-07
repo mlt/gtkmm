@@ -11,7 +11,9 @@ def gen(dll,lib,d):
         for line in output.split(b"\r\n"):
             if (re.match(b".* T _|.* I __nm", line)): #|.* I __imp
                 line = re.sub(b"^.* T _|^.* I __nm__", b"", line) #|^.* I _
-                f.write(line + b"\n")
+                # msvcrt.dll on windows misses secure versions of common CRT functions
+                if not ("msvcrt.dll" == dll and line.endswith(b"_s")):
+                    f.write(line + b"\n")
         f.write(str.encode("LIBRARY %s\n" % dll))
 
 os.chdir(root + "\\lib")

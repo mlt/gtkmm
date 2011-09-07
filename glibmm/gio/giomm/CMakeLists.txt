@@ -1,5 +1,7 @@
 set(GIOMM_SRCS
 appinfo.cc
+application.cc
+applicationcommandline.cc
 asyncinitable.cc
 asyncresult.cc
 bufferedinputstream.cc
