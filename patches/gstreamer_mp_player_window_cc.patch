@@ -1,0 +1,23 @@
+--- examples/media_player_gtkmm/player_window.cc.orig	2010-06-06 18:25:32 -0500
++++ examples/media_player_gtkmm/player_window.cc	2011-08-23 12:47:36 -0500
+@@ -16,9 +16,10 @@
+  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+  */
+ 
++#include <gstreamermm/bin.h>
+ #include <gtkmm/stock.h>
+ #include <gtkmm/filechooserdialog.h>
+-#include <gdk/gdkx.h>
++#include <gdk/win32/gdkwin32.h>
+ #include <gstreamermm/bus.h>
+ #include <gstreamermm/caps.h>
+ #include <gstreamermm/clock.h>
+@@ -117,7 +118,7 @@
+   // When the video area (the drawing area) is realized, Get its X Window
+   // ID and save it for when the Gst::XOverlay is ready to accept an ID in
+   // which to draw the video.
+-  m_x_window_id = GDK_WINDOW_XID(m_video_area.get_window()->gobj());
++  m_x_window_id = (gulong)GDK_WINDOW_HWND(m_video_area.get_window()->gobj());
+ }
+ 
+ // This function is used to receive asynchronous messages from mainPipeline's
