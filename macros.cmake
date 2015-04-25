@@ -3,17 +3,13 @@
 macro(MKLINK FROM TO)
 file(GLOB_RECURSE CMAKE_GTK_FILES
      RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/${FROM}
-     ${FROM}/*CMakeLists.txt ${FROM}/CMakeLists.txt) 
+     ${CMAKE_CURRENT_SOURCE_DIR}/${FROM}/*CMakeLists.txt)
 foreach(FILE ${CMAKE_GTK_FILES})
   set(LINK ${CMAKE_CURRENT_SOURCE_DIR}/${TO}/${FILE})
   file(TO_NATIVE_PATH ${LINK} LINK)
   if(NOT EXISTS ${LINK})
     file(TO_NATIVE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/${FROM}/${FILE} TARGET)
-    if(${CMAKE_SYSTEM_VERSION} VERSION_LESS "5.2") #XP is 5.1
-      execute_process(COMMAND ln "${TARGET}" "${LINK}")
-    elseif()
-      execute_process(COMMAND cmd /C mklink /H "${LINK}" "${TARGET}")
-    endif()
+    execute_process(COMMAND cmd /C mklink /H "${LINK}" "${TARGET}")
   endif()
 endforeach(FILE)
 endmacro()
