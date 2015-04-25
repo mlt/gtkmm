@@ -1,5 +1,5 @@
 include_directories(
-     ${GlibEtcInstallRoot}/include/gstreamer-0.10
+     ${GlibEtcInstallRoot}/include/gstreamer-1.0
      ${GlibEtcInstallRoot}/include/libxml2
      ${CMAKE_SOURCE_DIR}/${XMLMM_DIR}
      ${CMAKE_SOURCE_DIR}/${XMLMM_DIR}/${EXTRA}/libxml++
@@ -10,19 +10,23 @@ add_definitions(-DLIBXMLPP_BUILD -DGSTREAMERMM_BUILD -D_WINDLL -DGLIBMM_DLL -DGL
 
 set(GSTREAMERMM_SRCS
 adder.cc
-alsamixer.cc
+allocator.cc
 alsasink.cc
 alsasrc.cc
+appsink.cc
+appsrc.cc
+audiobasesink.cc
+audiobasesrc.cc
 audioclock.cc
 audioconvert.cc
 audiofilter.cc
+audioformat.cc
+audioinfo.cc
 audiorate.cc
-audioresample.cc
+audioringbuffer.cc
 audiosink.cc
 audiosrc.cc
 audiotestsrc.cc
-baseaudiosink.cc
-baseaudiosrc.cc
 basesink.cc
 basesrc.cc
 basetransform.cc
@@ -31,16 +35,16 @@ buffer.cc
 bufferlist.cc
 bus.cc
 caps.cc
+capsfeatures.cc
 capsfilter.cc
-cddabasesrc.cc
 cdparanoiasrc.cc
 childproxy.cc
 clock.cc
 clockoverlay.cc
 colorbalance.cc
 colorbalancechannel.cc
+context.cc
 decodebin.cc
-decodebin2.cc
 discoverer.cc
 discovererinfo.cc
 element.cc
@@ -52,34 +56,24 @@ fakesink.cc
 fakesrc.cc
 fdsink.cc
 fdsrc.cc
-ffmpegcolorspace.cc
 filesink.cc
 filesrc.cc
-filter.cc
 format.cc
 funnel.cc
-gdpdepay.cc
-gdppay.cc
 ghostpad.cc
 giosink.cc
 giosrc.cc
 giostreamsink.cc
 giostreamsrc.cc
-gst_wrap_init.cc
 handle_error.cc
 identity.cc
-index.cc
-indexfactory.cc
 init.cc
 inputselector.cc
-interface.cc
 iterator.cc
+mapinfo.cc
+memory.cc
 message.cc
 miniobject.cc
-mixer.cc
-mixeroptions.cc
-mixertrack.cc
-multifdsink.cc
 multiqueue.cc
 navigation.cc
 object.cc
@@ -91,17 +85,15 @@ padtemplate.cc
 parse.cc
 pipeline.cc
 playbin.cc
-playbin2.cc
 plugin.cc
 pluginfeature.cc
 preset.cc
-propertyprobe.cc
 pushsrc.cc
 query.cc
 queue.cc
 queue2.cc
 registry.cc
-ringbuffer.cc
+sample.cc
 segment.cc
 streamvolume.cc
 structure.cc
@@ -113,7 +105,6 @@ task.cc
 taskpool.cc
 tcpclientsink.cc
 tcpclientsrc.cc
-tcpserversink.cc
 tcpserversrc.cc
 tee.cc
 textoverlay.cc
@@ -122,9 +113,6 @@ theoradec.cc
 theoraenc.cc
 theoraparse.cc
 timeoverlay.cc
-tuner.cc
-tunerchannel.cc
-tunernorm.cc
 typefind.cc
 typefindelement.cc
 typefindfactory.cc
@@ -134,21 +122,17 @@ valve.cc
 value.cc
 version.cc
 videoorientation.cc
+videooverlay.cc
 videorate.cc
 videoscale.cc
 videosink.cc
 videotestsrc.cc
-volume.cc
 vorbisdec.cc
 vorbisenc.cc
 vorbisparse.cc
 vorbistag.cc
-wrap.cc
 wrap_init.cc
 ximagesink.cc
-xml.cc
-xoverlay.cc
-xvimagesink.cc
 )
 
 add_library(gstreamermm-${GSTREAMERMM_VERSION} SHARED ${GSTREAMERMM_SRCS} gstreamermm.def)
@@ -160,7 +144,7 @@ add_custom_command(TARGET gstreamermm-${GSTREAMERMM_VERSION} PRE_LINK
 COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/gstreamermm.def gstreamermm-${GSTREAMERMM_VERSION}${POSTFIX}.dll ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/gstreamermm-${GSTREAMERMM_VERSION}.dir/*.obj
 )
 
-target_link_libraries(gstreamermm-${GSTREAMERMM_VERSION} gstreamer-0.10.lib sigc-${SIGC_VERSION} gstinterfaces-0.10.lib glibmm-${GLIBMM_VERSION} xmlpp-${XMLMM_VERSION} gstaudio-0.10.lib gstbase-0.10.lib gstcdda-0.10.lib gstvideo-0.10.lib gstpbutils-0.10.lib) #glibmm-${GLIBMM_VERSION} giomm-${GLIBMM_VERSION}
+target_link_libraries(gstreamermm-${GSTREAMERMM_VERSION} gstreamer-1.0 sigc-${SIGC_VERSION} glibmm-${GLIBMM_VERSION} xmlpp-${XMLMM_VERSION} gstaudio-1.0 gstbase-1.0 gstvideo-1.0 gstpbutils-1.0) #glibmm-${GLIBMM_VERSION} giomm-${GLIBMM_VERSION}
 
 install(TARGETS gstreamermm-${GSTREAMERMM_VERSION}
 LIBRARY DESTINATION "lib"

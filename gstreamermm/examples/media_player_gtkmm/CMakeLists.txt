@@ -1,5 +1,5 @@
 include_directories(
-     ${GlibEtcInstallRoot}/include/gstreamer-0.10
+     ${GlibEtcInstallRoot}/include/gstreamer-1.0
      ${GlibEtcInstallRoot}/include/libxml2
      ${CMAKE_SOURCE_DIR}/${XMLMM_DIR}
      ${CMAKE_SOURCE_DIR}/${XMLMM_DIR}/${EXTRA}/libxml++
@@ -17,7 +17,7 @@ main.cc
 
 add_executable(media_player_gtkmm ${PLAYER_SRCS})
 
-target_link_libraries(media_player_gtkmm gtkmm-${GTKMM_VERSION} gstreamermm-${GSTREAMERMM_VERSION} sigc-${SIGC_VERSION} gstinterfaces-0.10.lib glibmm-${GLIBMM_VERSION} xmlpp-${XMLMM_VERSION} gstaudio-0.10.lib gstbase-0.10.lib gstcdda-0.10.lib gstvideo-0.10.lib libmsvcrt.lib )
+target_link_libraries(media_player_gtkmm gtkmm-${GTKMM_VERSION} gstreamermm-${GSTREAMERMM_VERSION} sigc-${SIGC_VERSION} glibmm-${GLIBMM_VERSION} xmlpp-${XMLMM_VERSION} gstaudio-1.0 gstbase-1.0 gstvideo-1.0)
 
 install(TARGETS media_player_gtkmm
 LIBRARY DESTINATION "lib"

@@ -100,3 +100,10 @@ WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 execute_process(COMMAND patch -p0 --binary -i patches\\glibconfig_h.patch
 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 endmacro()
+
+macro(GET_VERSION what major minor patch)
+  string(REGEX REPLACE "[.-]" ";" VERSION_LIST ${what})
+  list(GET VERSION_LIST 1 ${major})
+  list(GET VERSION_LIST 2 ${minor})
+  list(GET VERSION_LIST 3 ${patch})
+endmacro()
