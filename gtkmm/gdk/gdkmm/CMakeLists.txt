@@ -1,4 +1,5 @@
 set(GDKMM_SRCS
+applaunchcontext.cc
 color.cc
 cursor.cc
 device.cc
@@ -33,7 +34,7 @@ add_custom_command(TARGET gdkmm-${GTKMM_VERSION} PRE_LINK
 COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/gdkmm.def gdkmm-${GTKMM_VERSION}${POSTFIX}.dll ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/gdkmm-${GTKMM_VERSION}.dir/*.obj
 )
 
-target_link_libraries(gdkmm-${GTKMM_VERSION} glibmm-${GLIBMM_VERSION} giomm-${GLIBMM_VERSION} sigc-${SIGC_VERSION} cairomm-${CAIROMM_VERSION} gtk-${GtkApiVersion})
+target_link_libraries(gdkmm-${GTKMM_VERSION} glibmm-${GLIBMM_VERSION} giomm-${GLIBMM_VERSION} sigc-${SIGC_VERSION} cairomm-${CAIROMM_VERSION} gdk-3 gdk_pixbuf-2.0 gtk-3)
 
 install(TARGETS gdkmm-${GTKMM_VERSION}
 LIBRARY DESTINATION "lib"

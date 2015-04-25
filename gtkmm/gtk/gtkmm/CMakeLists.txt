@@ -5,6 +5,8 @@ accelkey.cc
 accellabel.cc
 accelmap.cc
 action.cc
+actionable.cc
+actionbar.cc
 actiongroup.cc
 activatable.cc
 adjustment.cc
@@ -14,6 +16,7 @@ appchooserbutton.cc
 appchooserdialog.cc
 appchooserwidget.cc
 application.cc
+applicationwindow.cc
 arrow.cc
 aspectframe.cc
 assistant.cc
@@ -43,13 +46,18 @@ cellrenderertoggle.cc
 cellview.cc
 checkbutton.cc
 checkmenuitem.cc
+childpropertyproxy.cc
+childpropertyproxy_base.cc
 clipboard.cc
 colorbutton.cc
+colorchooser.cc
+colorchooserdialog.cc
 colorselection.cc
 combobox.cc
 comboboxtext.cc
 container.cc
 cssprovider.cc
+csssection.cc
 dialog.cc
 drawingarea.cc
 editable.cc
@@ -58,6 +66,7 @@ entrybuffer.cc
 entrycompletion.cc
 enums.cc
 eventbox.cc
+eventcontroller.cc
 expander.cc
 filechooser.cc
 filechooserbutton.cc
@@ -65,13 +74,26 @@ filechooserdialog.cc
 filechooserwidget.cc
 filefilter.cc
 fixed.cc
+flowbox.cc
+flowboxchild.cc
 fontbutton.cc
 fontchooser.cc
 fontchooserdialog.cc
+fontchooserwidget.cc
 fontselection.cc
 frame.cc
+gesture.cc
+gesturedrag.cc
+gesturelongpress.cc
+gesturemultipress.cc
+gesturepan.cc
+gesturerotate.cc
+gesturesingle.cc
+gestureswipe.cc
+gesturezoom.cc
 grid.cc
 handlebox.cc
+headerbar.cc
 hvbox.cc
 hvbuttonbox.cc
 hvpaned.cc
@@ -90,12 +112,17 @@ infobar.cc
 invisible.cc
 label.cc
 layout.cc
+levelbar.cc
 linkbutton.cc
+listbox.cc
+listboxrow.cc
 liststore.cc
 listviewtext.cc
+lockbutton.cc
 main.cc
 menu.cc
 menubar.cc
+menubutton.cc
 menuitem.cc
 menushell.cc
 menutoolbutton.cc
@@ -106,11 +133,14 @@ numerableicon.cc
 object.cc
 offscreenwindow.cc
 orientable.cc
+overlay.cc
 pagesetup.cc
 #pagesetupunixdialog.cc
 paned.cc
 papersize.cc
+placessidebar.cc
 #plug.cc
+popover.cc
 printcontext.cc
 #printer.cc
 #printjob.cc
@@ -134,11 +164,14 @@ recentfilter.cc
 recentinfo.cc
 recentmanager.cc
 requisition.cc
+revealer.cc
 scale.cc
 scalebutton.cc
 scrollable.cc
 scrollbar.cc
 scrolledwindow.cc
+searchbar.cc
+searchentry.cc
 selectiondata.cc
 selectiondata_private.cc
 separator.cc
@@ -149,6 +182,9 @@ sizegroup.cc
 #socket.cc
 spinbutton.cc
 spinner.cc
+stack.cc
+stacksidebar.cc
+stackswitcher.cc
 statusbar.cc
 statusicon.cc
 stock.cc
@@ -200,6 +236,7 @@ volumebutton.cc
 widget.cc
 widgetpath.cc
 window.cc
+windowgroup.cc
 wrap_init.cc
 )
 
@@ -213,7 +250,7 @@ add_custom_command(TARGET gtkmm-${GTKMM_VERSION} PRE_LINK
 COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/gtkmm.def gtkmm-${GTKMM_VERSION}${POSTFIX}.dll ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/gtkmm-${GTKMM_VERSION}.dir/*.obj
 )
 
-target_link_libraries(gtkmm-${GTKMM_VERSION} gdkmm-${GTKMM_VERSION} glibmm-${GLIBMM_VERSION} giomm-${GLIBMM_VERSION} atkmm-${ATKMM_VERSION} pangomm-${PANGOMM_VERSION} sigc-${SIGC_VERSION} cairomm-${CAIROMM_VERSION} gtk-${GtkApiVersion})
+target_link_libraries(gtkmm-${GTKMM_VERSION} gdkmm-${GTKMM_VERSION} glibmm-${GLIBMM_VERSION} giomm-${GLIBMM_VERSION} atkmm-${ATKMM_VERSION} pangomm-${PANGOMM_VERSION} sigc-${SIGC_VERSION} cairomm-${CAIROMM_VERSION} gtk-3)
 
 install(TARGETS gtkmm-${GTKMM_VERSION}
 LIBRARY DESTINATION "lib"
