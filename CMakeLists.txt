@@ -4,7 +4,7 @@ project(gtkmm)
 include(macros.cmake)
 
 set(SIGC_DIR libsigc++-2.4.1)
-set(GLIBMM_DIR glibmm-2.29.13)
+set(GLIBMM_DIR glibmm-2.44.0)
 set(ATKMM_DIR atkmm-2.22.5)
 set(CAIROMM_DIR cairomm-1.10.0)
 set(PANGOMM_DIR pangomm-2.28.2)
@@ -32,7 +32,7 @@ SET(GSTREAMERMM_DIR_URL http://ftp.gnome.org/pub/GNOME/sources/gstreamermm/${GST
 
 GET(${ATKMM_DIR_URL}/${ATKMM_DIR}.tar.bz2)
 GET(${CAIROMM_DIR_URL}/${CAIROMM_DIR}.tar.gz)
-GET(${GLIBMM_DIR_URL}/${GLIBMM_DIR}.tar.bz2)
+GET(${GLIBMM_DIR_URL}/${GLIBMM_DIR}.tar.xz)
 if(NOT EXISTS ${GTKMM_DIR})
 GET(${GTKMM_DIR_URL}/${GTKMM_DIR}.tar.bz2)
 execute_process(COMMAND patch -p0 --binary -i ${CMAKE_CURRENT_SOURCE_DIR}/patches/gtkmm_demowindow_cc.patch

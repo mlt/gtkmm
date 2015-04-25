@@ -1,11 +1,15 @@
 set(GLIBMM_SRCS
 arrayhandle.cc
 balancedtree.cc
+binding.cc
+bytearray.cc
+bytes.cc
 checksum.cc
 class.cc
 containers.cc
 convert.cc
 date.cc
+datetime.cc
 debug.cc
 dispatcher.cc
 error.cc
@@ -42,6 +46,7 @@ streamiochannel.cc
 stringutils.cc
 thread.cc
 threadpool.cc
+threads.cc
 timer.cc
 timeval.cc
 unicode.cc
@@ -54,6 +59,7 @@ value_custom.cc
 valuearray.cc
 variant.cc
 variant_basictypes.cc
+variantdict.cc
 variantiter.cc
 varianttype.cc
 vectorutils.cc
