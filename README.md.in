@@ -26,15 +26,15 @@ ln tool from http://schinagl.priv.at/nt/ln/ln.html should be used as fsutil requ
 
 Builds with
 
-    [@SIGC_DIR@](@SIGC_DIR_URL@)
-    [@GLIBMM_DIR@](@GLIBMM_DIR_URL@)
-    [@ATKMM_DIR@](@ATKMM_DIR_URL@)
-    [@CAIROMM_DIR@](@CAIROMM_DIR_URL@)
-    [@PANGOMM_DIR@](@PANGOMM_DIR_URL@)
-    [@GTKMM_DIR@](@GTKMM_DIR_URL@)
-    [@XMLMM_DIR@](@XMLMM_DIR_URL@)
-    [@GSTREAMERMM_DIR@](@GSTREAMERMM_DIR_URL@)
-    GTK+ (See git submodule SHA)
+- [@SIGC_DIR@](@SIGC_DIR_URL@)
+- [@GLIBMM_DIR@](@GLIBMM_DIR_URL@)
+- [@ATKMM_DIR@](@ATKMM_DIR_URL@)
+- [@CAIROMM_DIR@](@CAIROMM_DIR_URL@)
+- [@PANGOMM_DIR@](@PANGOMM_DIR_URL@)
+- [@GTKMM_DIR@](@GTKMM_DIR_URL@)
+- [@XMLMM_DIR@](@XMLMM_DIR_URL@)
+- [@GSTREAMERMM_DIR@](@GSTREAMERMM_DIR_URL@)
+- GTK+ (See git submodule SHA)
 
 ## TODO
 
