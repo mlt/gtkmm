@@ -1,3 +1,0 @@
-[submodule "gtk+"]
-	path = gtk+
-	url = git://git.gnome.org/gtk+

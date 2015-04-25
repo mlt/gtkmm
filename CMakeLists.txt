@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 2.8)
 project(gtkmm)
 
 include(macros.cmake)
-MKLINK(gtk+.local gtk+)
 
 set(SIGC_DIR libsigc++-2.2.10)
 set(GLIBMM_DIR glibmm-2.29.13)
@@ -21,11 +20,6 @@ VERSION(${PANGOMM_DIR} PANGOMM_VERSION)
 VERSION(${GTKMM_DIR} GTKMM_VERSION)
 VERSION(${XMLMM_DIR} XMLMM_VERSION)
 VERSION(${GSTREAMERMM_DIR} GSTREAMERMM_VERSION)
-set(GtkApiVersion 3.1)
-
-if(NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/usr)
-OBS()
-endif()
 
 SET(ATKMM_DIR_URL http://ftp.gnome.org/pub/GNOME/sources/atkmm/${ATKMM_VERSION})
 SET(CAIROMM_DIR_URL http://cairographics.org/releases)
@@ -103,6 +97,7 @@ add_definitions( /wd4273 /wd4290 /wd4250 )
 
 include_directories(
      ${GlibEtcInstallRoot}/include
+     ${GlibEtcInstallRoot}/include/gtk-3.0
      ${GlibEtcInstallRoot}/include/glib-2.0
      ${GlibEtcInstallRoot}/lib/glib-2.0/include
      ${GlibEtcInstallRoot}/include/atk-1.0
@@ -121,7 +116,6 @@ include_directories(
      ${CAIROMM_DIR}/${EXTRA}/cairomm
      ${PANGOMM_DIR}/pango
      ${PANGOMM_DIR}/${EXTRA}/pangomm
-     gtk+
      ${GTKMM_DIR}/gdk
      ${GTKMM_DIR}/${EXTRA}/gdkmm
      ${GTKMM_DIR}/gtk
@@ -139,7 +133,6 @@ add_subdirectory(${GLIBMM_DIR}/gio/giomm)
 add_subdirectory(${ATKMM_DIR}/atk/atkmm)
 add_subdirectory(${CAIROMM_DIR}/cairomm)
 add_subdirectory(${PANGOMM_DIR}/pango/pangomm)
-add_subdirectory(gtk+)
 add_subdirectory(${GTKMM_DIR}/gdk/gdkmm)
 add_subdirectory(${GTKMM_DIR}/gtk/gtkmm)
 add_subdirectory(${GTKMM_DIR}/demos/gtk-demo)
