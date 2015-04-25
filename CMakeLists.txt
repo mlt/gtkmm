@@ -3,7 +3,7 @@ project(gtkmm)
 
 include(macros.cmake)
 
-set(SIGC_DIR libsigc++-2.2.10)
+set(SIGC_DIR libsigc++-2.4.1)
 set(GLIBMM_DIR glibmm-2.29.13)
 set(ATKMM_DIR atkmm-2.22.5)
 set(CAIROMM_DIR cairomm-1.10.0)
@@ -39,12 +39,12 @@ execute_process(COMMAND patch -p0 --binary -i ${CMAKE_CURRENT_SOURCE_DIR}/patche
 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${GTKMM_DIR})
 endif()
 GET(${PANGOMM_DIR_URL}/${PANGOMM_DIR}.tar.bz2)
-GET(${SIGC_DIR_URL}/${SIGC_DIR}.tar.bz2)
 GET(${XMLMM_DIR_URL}/${XMLMM_DIR}.tar.bz2)
 if(NOT EXISTS ${GSTREAMERMM_DIR})
 GET(${GSTREAMERMM_DIR_URL}/${GSTREAMERMM_DIR}.tar.bz2)
 execute_process(COMMAND patch -p0 --binary -i ${CMAKE_CURRENT_SOURCE_DIR}/patches/gstreamermm_clock_h.patch
 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${GSTREAMERMM_DIR})
+GET(${SIGC_DIR_URL}/${SIGC_DIR}.tar.xz)
 execute_process(COMMAND patch -p0 --binary -i ${CMAKE_CURRENT_SOURCE_DIR}/patches/gstreamer_mp_player_window_cc.patch
 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${GSTREAMERMM_DIR})
 #FIXME: parse version
