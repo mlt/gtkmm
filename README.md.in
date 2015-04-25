@@ -6,9 +6,10 @@ Native GTKMM builds for Win32 with MS VC++ lag behind those with gcc.
 
 ## How
 
-* <del>[Use OBS](http://mail.gnome.org/archives/gtk-list/2011-March/msg00111.html) (openSUSE Build Service)</del> [Fedora-mingw binaries](http://build1.openftd.org/fedora-cross/i386/RPMS_noarch/) for all prerequisites
- + [Nice script by Maarten Bosmans](http://www.bosmans.ch/pulseaudio/download-mingw-rpm.py) downloads everything: \Python32\python download-mingw-rpm.py --no-clean --deps libxml2 libxml2-devel atk atk-devel libcairo2 libcairo-gobject2 cairo-devel pango pango-devel gstreamer gstreamer-devel gdk-pixbuf gdk-pixbuf-devel
-* You'll need perl to build gtk+ git submodule
+* <del>[Use OBS](http://mail.gnome.org/archives/gtk-list/2011-March/msg00111.html) (openSUSE Build Service)</del> <del>[Fedora-mingw binaries](http://build1.openftd.org/fedora-cross/i386/RPMS_noarch/) for all prerequisites</del>
+  Now msys2 `pacman -S mingw-w64-i686-gtk3 mingw-w64-i686-gstreamer mingw-w64-i686-gst-plugins-good`
+ + <del>[Nice script by Maarten Bosmans](http://www.bosmans.ch/pulseaudio/download-mingw-rpm.py) downloads everything: \Python32\python download-mingw-rpm.py --no-clean --deps libxml2 libxml2-devel atk atk-devel libcairo2 libcairo-gobject2 cairo-devel pango pango-devel gstreamer gstreamer-devel gdk-pixbuf gdk-pixbuf-devel</del>
+* <del>You'll need perl to build gtk+ git submodule</del>
 * It is complicated to build MM counterpart from git on Win32 as they heavily use m4 macro processor
 * <del>Download source code release for corresponding subfolders</del>
 
@@ -19,8 +20,7 @@ Native GTKMM builds for Win32 with MS VC++ lag behind those with gcc.
 
 ## Notes
 
-Windows XP doesn't have mklink tool.
-ln tool from http://schinagl.priv.at/nt/ln/ln.html should be used as fsutil requires elevated privileges.
+Windows XP doesn't have mklink tool and is not supported anymore.
 
 ## Status
 
@@ -34,7 +34,7 @@ Builds with
 - [@GTKMM_DIR@](@GTKMM_DIR_URL@)
 - [@XMLMM_DIR@](@XMLMM_DIR_URL@)
 - [@GSTREAMERMM_DIR@](@GSTREAMERMM_DIR_URL@)
-- GTK+ (See git submodule SHA)
+- GTK+ (See msys2 fordetails)
 
 ## TODO
 
