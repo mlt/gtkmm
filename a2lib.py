@@ -37,14 +37,11 @@ def walk(root):
                     gen(f, lib, d)
                 Popen(["lib", "/def:%s" % d, "/name:%s" % f]).communicate()
 
-    gen("msvcrt.dll", "libmsvcrt.a", "libmsvcrt.def")
-    Popen(["lib", "/def:libmsvcrt.def"]).communicate()
-
 def get_parser():
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--root',
-                        default=sys.path[0] + "\\usr\\i686-w64-mingw32\\sys-root\\mingw",
+                        default="C:/msys32/mingw32",
                         help='Root directory for MINGW. The one that has /bin and /lib.')
     return parser
 
