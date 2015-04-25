@@ -8,6 +8,8 @@ add_definitions(-DLIBXMLPP_BUILD -D_WINDLL -DGLIBMM_DLL -DGLIBMM_MSC)
 
 set(XMLMM_SRCS
 attribute.cc
+attributedeclaration.cc
+attributenode.cc
 nodes/cdatanode.cc
 nodes/commentnode.cc
 nodes/contentnode.cc
@@ -16,6 +18,7 @@ parsers/domparser.cc
 dtd.cc
 validators/dtdvalidator.cc
 nodes/element.cc
+nodes/entitydeclaration.cc
 nodes/entityreference.cc
 exceptions/exception.cc
 exceptions/internal_error.cc
@@ -33,6 +36,8 @@ parsers/saxparser.cc
 schema.cc
 validators/schemavalidator.cc
 nodes/textnode.cc
+nodes/xincludeend.cc
+nodes/xincludestart.cc
 parsers/textreader.cc
 validators/validator.cc
 exceptions/validity_error.cc

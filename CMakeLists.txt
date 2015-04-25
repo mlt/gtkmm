@@ -9,7 +9,7 @@ set(ATKMM_DIR atkmm-2.22.7)
 set(CAIROMM_DIR cairomm-1.11.2)
 set(PANGOMM_DIR pangomm-2.36.0)
 set(GTKMM_DIR gtkmm-3.16.0)
-set(XMLMM_DIR libxml++-2.34.2)
+set(XMLMM_DIR libxml++-2.38.0)
 set(GSTREAMERMM_DIR gstreamermm-0.10.10)
 
 VERSION(${SIGC_DIR} SIGC_VERSION)
@@ -36,13 +36,13 @@ GET(${GLIBMM_DIR_URL}/${GLIBMM_DIR}.tar.xz)
 GET(${GTKMM_DIR_URL}/${GTKMM_DIR}.tar.xz)
 execute_process(COMMAND patch -p0 --binary -i ${CMAKE_CURRENT_SOURCE_DIR}/patches/gtkmm_demowindow_cc.patch
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${GTKMM_DIR})
-GET(${XMLMM_DIR_URL}/${XMLMM_DIR}.tar.bz2)
 if(NOT EXISTS ${GSTREAMERMM_DIR})
 GET(${GSTREAMERMM_DIR_URL}/${GSTREAMERMM_DIR}.tar.bz2)
 execute_process(COMMAND patch -p0 --binary -i ${CMAKE_CURRENT_SOURCE_DIR}/patches/gstreamermm_clock_h.patch
 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${GSTREAMERMM_DIR})
 GET(${PANGOMM_DIR_URL}/${PANGOMM_DIR}.tar.xz)
 GET(${SIGC_DIR_URL}/${SIGC_DIR}.tar.xz)
+GET(${XMLMM_DIR_URL}/${XMLMM_DIR}.tar.xz)
 execute_process(COMMAND patch -p0 --binary -i ${CMAKE_CURRENT_SOURCE_DIR}/patches/gstreamer_mp_player_window_cc.patch
 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${GSTREAMERMM_DIR})
 #FIXME: parse version
