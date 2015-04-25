@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <GTKMM3_BASEPATH>@CMAKE_INSTALL_PREFIX@</GTKMM3_BASEPATH>
+    <GlibEtcInstallRoot>@GlibEtcInstallRoot@</GlibEtcInstallRoot>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.61030.0</_ProjectFileVersion>
+    <_PropertySheetDisplayName>gtkmm @GTKMM_VERSION@ Debug Win32</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalOptions>/vd2 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(GlibEtcInstallRoot)/include;$(GlibEtcInstallRoot)/include/gtk-3.0;$(GlibEtcInstallRoot)/include/glib-2.0;$(GlibEtcInstallRoot)/lib/glib-2.0/include;$(GlibEtcInstallRoot)/include/atk-1.0;$(GlibEtcInstallRoot)/include/pango-1.0;$(GlibEtcInstallRoot)/include/cairo;$(GlibEtcInstallRoot)/include/freetype2;$(GlibEtcInstallRoot)/include/gdk-pixbuf-2.0;$(GTKMM3_BASEPATH)\lib\gtkmm-@GTKMM_VERSION@\include;$(GTKMM3_BASEPATH)\include\gtkmm-@GTKMM_VERSION@;$(GTKMM3_BASEPATH)\lib\gdkmm-@GTKMM_VERSION@\include;$(GTKMM3_BASEPATH)\include\gdkmm-@GTKMM_VERSION@;$(GTKMM3_BASEPATH)\lib\pangomm-@PANGOMM_VERSION@\include;$(GTKMM3_BASEPATH)\include\pangomm-@PANGOMM_VERSION@;$(GTKMM3_BASEPATH)\include\atkmm-@ATKMM_VERSION@;$(GTKMM3_BASEPATH)\lib\giomm-@GLIBMM_VERSION@\include;$(GTKMM3_BASEPATH)\include\giomm-@GLIBMM_VERSION@;$(GTKMM3_BASEPATH)\lib\glibmm-@GLIBMM_VERSION@\include;$(GTKMM3_BASEPATH)\include\glibmm-@GLIBMM_VERSION@;$(GTKMM3_BASEPATH)\include\cairomm-@CAIROMM_VERSION@;$(GTKMM3_BASEPATH)\lib\sigc++-@SIGC_VERSION@\include;$(GTKMM3_BASEPATH)\include\sigc++-@SIGC_VERSION@;$(GTKMM3_BASEPATH)\lib\gtk-@GtkApiVersion@\include;$(GTKMM3_BASEPATH)\include\gtk-@GtkApiVersion@;$(GTKMM3_BASEPATH)\include\gdk-pixbuf-2.0;$(GTKMM3_BASEPATH)\include\pango-1.0;$(GTKMM3_BASEPATH)\include\atk-1.0;$(GTKMM3_BASEPATH)\lib\glib-2.0\include;$(GTKMM3_BASEPATH)\include\glib-2.0;$(GTKMM3_BASEPATH)\include\libxml2;$(GTKMM3_BASEPATH)\include\cairo;$(GTKMM3_BASEPATH)\include\freetype2;$(GTKMM3_BASEPATH)\include;$(GTKMM3_BASEPATH)\include\gstreamermm-@GSTREAMERMM_VERSION@;$(GTKMM3_BASEPATH)\include\libxml++-@XMLMM_VERSION@;$(GTKMM3_BASEPATH)\include\gstreamer-1.0;$(GTKMM3_BASEPATH)\lib\libxml++-@XMLMM_VERSION@\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>G_HAVE_ISO_VARARGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4250;4290;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>gstreamer-1.0.lib;gstreamermm-@GSTREAMERMM_VERSION@@POSTFIX@.lib;gtkmm-@GTKMM_VERSION@@POSTFIX@.lib;gdkmm-@GTKMM_VERSION@@POSTFIX@.lib;atkmm-@ATKMM_VERSION@@POSTFIX@.lib;pangomm-@PANGOMM_VERSION@@POSTFIX@.lib;giomm-@GLIBMM_VERSION@@POSTFIX@.lib;glibmm-@GLIBMM_VERSION@@POSTFIX@.lib;cairomm-@CAIROMM_VERSION@@POSTFIX@.lib;sigc-@SIGC_VERSION@@POSTFIX@.lib;gtk-3.lib;xml2.lib;gdk-3.lib;atk-1.0.lib;gdk_pixbuf-2.0.lib;pangowin32-1.0.lib;pangocairo-1.0.lib;pango-1.0.lib;cairo.lib;gio-2.0.lib;gobject-2.0.lib;gmodule-2.0.lib;glib-2.0.lib;intl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(GlibEtcInstallRoot)\lib;$(GTKMM3_BASEPATH)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="GTKMM3_BASEPATH">
+      <Value>$(GTKMM3_BASEPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GlibEtcInstallRoot">
+      <Value>$(GlibEtcInstallRoot)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

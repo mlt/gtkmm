@@ -45,14 +45,6 @@ execute_process(COMMAND patch -p0 --binary -i ${CMAKE_CURRENT_SOURCE_DIR}/patche
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${GSTREAMERMM_DIR})
 configure_file(patches/gstreamermmconfig.h.in ${CMAKE_CURRENT_SOURCE_DIR}/${GSTREAMERMM_DIR}/gstreamer/gstreamermmconfig.h @ONLY)
 
-SET(CPACK_PACKAGE_VERSION_MAJOR 3)
-SET(CPACK_PACKAGE_VERSION_MINOR 1)
-set( CPACK_GENERATOR "ZIP" )
-TODAY(TWEAK)
-SET(CPACK_PACKAGE_VERSION_PATCH "18-${TWEAK}")
-
-INCLUDE(CPack)
-
 # Use this or uncomment next line for release build "\Program Files\CMake 2.8\bin\cmake.exe" -D CMAKE_BUILD_TYPE=RELEASE ..
 #set(CMAKE_BUILD_TYPE RELEASE CACHE STRING "Forced release" FORCE)
 
@@ -131,9 +123,15 @@ add_subdirectory(${XMLMM_DIR}/libxml++)
 add_subdirectory(${GSTREAMERMM_DIR})
 
 configure_file(MSVC/gtkmm3.vsprops.in ${CMAKE_CURRENT_SOURCE_DIR}/MSVC/gtkmm3${POSTFIX}.vsprops @ONLY)
+configure_file(MSVC/gtkmm3.props.in ${CMAKE_CURRENT_SOURCE_DIR}/MSVC/gtkmm3${POSTFIX}.props @ONLY)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/MSVC/gtkmm3${POSTFIX}.vsprops DESTINATION "MSVC")
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/MSVC/gtkmm3${POSTFIX}.props DESTINATION "MSVC")
 #set(RuntimeLibrary 3) # for debug
 
 configure_file(README.md.in ${CMAKE_CURRENT_SOURCE_DIR}/README.md @ONLY)
 
-install(DIRECTORY ${GlibEtcInstallRoot}/ DESTINATION .)
+set( CPACK_GENERATOR "ZIP" )
+GET_VERSION(${GTKMM_DIR} CPACK_PACKAGE_VERSION_MAJOR CPACK_PACKAGE_VERSION_MINOR CPACK_PACKAGE_VERSION_PATCH)
+SET(CPACK_PACKAGE_VERSION_PATCH "${CPACK_PACKAGE_VERSION_PATCH}${POSTFIX}")
+
+INCLUDE(CPack)
