@@ -5,7 +5,7 @@ include(macros.cmake)
 
 set(SIGC_DIR libsigc++-2.4.1)
 set(GLIBMM_DIR glibmm-2.44.0)
-set(ATKMM_DIR atkmm-2.22.5)
+set(ATKMM_DIR atkmm-2.22.7)
 set(CAIROMM_DIR cairomm-1.10.0)
 set(PANGOMM_DIR pangomm-2.28.2)
 set(GTKMM_DIR gtkmm-3.1.18)
@@ -30,7 +30,7 @@ SET(SIGC_DIR_URL http://ftp.gnome.org/pub/GNOME/sources/libsigc++/${SIGC_VERSION
 SET(XMLMM_DIR_URL http://ftp.gnome.org/pub/GNOME/sources/libxml++/${XMLMM_VERSION})
 SET(GSTREAMERMM_DIR_URL http://ftp.gnome.org/pub/GNOME/sources/gstreamermm/${GSTREAMERMM_VERSION})
 
-GET(${ATKMM_DIR_URL}/${ATKMM_DIR}.tar.bz2)
+GET(${ATKMM_DIR_URL}/${ATKMM_DIR}.tar.xz)
 GET(${CAIROMM_DIR_URL}/${CAIROMM_DIR}.tar.gz)
 GET(${GLIBMM_DIR_URL}/${GLIBMM_DIR}.tar.xz)
 if(NOT EXISTS ${GTKMM_DIR})
