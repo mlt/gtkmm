@@ -51,7 +51,7 @@ COMMAND ECHO Will be generated later > libxml++.def
 )
 # NOTE: Multi-configuration generator does not copy folder hierarchy inside of CMAKE_CFG_INTDIR
 add_custom_command(TARGET xmlpp-${XMLMM_VERSION} PRE_LINK
-COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/libxml++.def $<TARGET_FILE_NAME:xml++-${XMLMM_VERSION}>
+COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/libxml++.def $<TARGET_FILE_NAME:xmlpp-${XMLMM_VERSION}>
   ${CMAKE_CURRENT_BINARY_DIR}/$<$<BOOL:${CMAKE_BUILD_TYPE}>:${CMAKE_FILES_DIRECTORY}>/xmlpp-${XMLMM_VERSION}.dir/${CMAKE_CFG_INTDIR}/*.obj
   ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/xmlpp-${XMLMM_VERSION}.dir/*.obj
   ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/xmlpp-${XMLMM_VERSION}.dir/io/*.obj 
