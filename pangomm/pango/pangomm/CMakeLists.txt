@@ -35,7 +35,7 @@ add_custom_command (OUTPUT pangomm.def
 COMMAND echo Will be generated later > pangomm.def
 )
 add_custom_command(TARGET pangomm-${PANGOMM_VERSION} PRE_LINK
-COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/pangomm.def pangomm-${PANGOMM_VERSION}${POSTFIX}.dll ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/pangomm-${PANGOMM_VERSION}.dir/*.obj
+COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/pangomm.def $<TARGET_FILE_NAME:pangomm-${PANGOMM_VERSION}> ${CMAKE_CURRENT_BINARY_DIR}/$<$<BOOL:${CMAKE_BUILD_TYPE}>:${CMAKE_FILES_DIRECTORY}>/pangomm-${PANGOMM_VERSION}.dir/${CMAKE_CFG_INTDIR}/*.obj
 )
 
 target_link_libraries(pangomm-${PANGOMM_VERSION} pango-1.0.lib cairomm-${CAIROMM_VERSION} pangocairo-1.0.lib glibmm-${GLIBMM_VERSION} sigc-${SIGC_VERSION})
@@ -45,7 +45,7 @@ LIBRARY DESTINATION "lib"
 ARCHIVE DESTINATION "lib"
 RUNTIME DESTINATION "bin")
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/pangomm-${PANGOMM_VERSION}${POSTFIX}.pdb DESTINATION "bin" CONFIGURATIONS DEBUG)
+install(FILES $<TARGET_PDB_FILE:pangomm-${PANGOMM_VERSION}> DESTINATION "bin" CONFIGURATIONS DEBUG)
 
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../../${EXTRA}/pangomm/pangommconfig.h DESTINATION "lib/pangomm-${PANGOMM_VERSION}/include")
 

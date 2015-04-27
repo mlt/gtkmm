@@ -37,7 +37,7 @@ LIBRARY DESTINATION "lib"
 ARCHIVE DESTINATION "lib"
 RUNTIME DESTINATION "bin")
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/gtkmm3-demo.pdb DESTINATION "bin" CONFIGURATIONS DEBUG)
+install(FILES $<TARGET_PDB_FILE:gtkmm3-demo> DESTINATION "bin" CONFIGURATIONS DEBUG)
 
 install(DIRECTORY ./ DESTINATION share/gtkmm-3.0/demo
 # minimal invasion... until code fixed or patched

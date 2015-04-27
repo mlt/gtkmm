@@ -74,7 +74,7 @@ add_custom_command (OUTPUT glibmm.def
 COMMAND echo Will be generated later > glibmm.def
 )
 add_custom_command(TARGET glibmm-${GLIBMM_VERSION} PRE_LINK
-COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/glibmm.def glibmm-${GLIBMM_VERSION}${POSTFIX}.dll ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/glibmm-${GLIBMM_VERSION}.dir/*.obj
+COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/glibmm.def $<TARGET_FILE_NAME:glibmm-${GLIBMM_VERSION}> ${CMAKE_CURRENT_BINARY_DIR}/$<$<BOOL:${CMAKE_BUILD_TYPE}>:${CMAKE_FILES_DIRECTORY}>/glibmm-${GLIBMM_VERSION}.dir/${CMAKE_CFG_INTDIR}/*.obj
 )
 
 target_link_libraries(glibmm-${GLIBMM_VERSION} glib-2.0.lib gobject-2.0.lib gmodule-2.0.lib
@@ -85,7 +85,7 @@ LIBRARY DESTINATION "lib"
 ARCHIVE DESTINATION "lib"
 RUNTIME DESTINATION "bin")
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/glibmm-${GLIBMM_VERSION}${POSTFIX}.pdb DESTINATION "bin" CONFIGURATIONS DEBUG)
+install(FILES $<TARGET_PDB_FILE:glibmm-${GLIBMM_VERSION}> DESTINATION "bin" CONFIGURATIONS DEBUG)
 
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../../${EXTRA}/glibmm/glibmmconfig.h DESTINATION "lib/glibmm-${GLIBMM_VERSION}/include")
 

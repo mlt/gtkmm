@@ -141,7 +141,7 @@ add_custom_command (OUTPUT gstreamermm.def
 COMMAND ECHO Will be generated later > gstreamermm.def
 )
 add_custom_command(TARGET gstreamermm-${GSTREAMERMM_VERSION} PRE_LINK
-COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/gstreamermm.def gstreamermm-${GSTREAMERMM_VERSION}${POSTFIX}.dll ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/gstreamermm-${GSTREAMERMM_VERSION}.dir/*.obj
+COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/gstreamermm.def $<TARGET_FILE_NAME:gstreamermm-${GSTREAMERMM_VERSION}> ${CMAKE_CURRENT_BINARY_DIR}/$<$<BOOL:${CMAKE_BUILD_TYPE}>:${CMAKE_FILES_DIRECTORY}>/gstreamermm-${GSTREAMERMM_VERSION}.dir/${CMAKE_CFG_INTDIR}/*.obj
 )
 
 target_link_libraries(gstreamermm-${GSTREAMERMM_VERSION} gstreamer-1.0 sigc-${SIGC_VERSION} glibmm-${GLIBMM_VERSION} xmlpp-${XMLMM_VERSION} gstaudio-1.0 gstbase-1.0 gstvideo-1.0 gstpbutils-1.0) #glibmm-${GLIBMM_VERSION} giomm-${GLIBMM_VERSION}
@@ -151,7 +151,7 @@ LIBRARY DESTINATION "lib"
 ARCHIVE DESTINATION "lib"
 RUNTIME DESTINATION "bin")
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/gstreamermm-${GSTREAMERMM_VERSION}${POSTFIX}.pdb DESTINATION "bin" CONFIGURATIONS DEBUG)
+install(FILES $<TARGET_PDB_FILE:gstreamermm-${GSTREAMERMM_VERSION}> DESTINATION "bin" CONFIGURATIONS DEBUG)
 
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../gstreamermmconfig.h DESTINATION "lib/gstreamermm-${GSTREAMERMM_VERSION}/include")
 

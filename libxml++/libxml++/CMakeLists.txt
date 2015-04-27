@@ -49,8 +49,10 @@ set_target_properties(xmlpp-${XMLMM_VERSION} PROPERTIES OUTPUT_NAME xml++-${XMLM
 add_custom_command (OUTPUT libxml++.def
 COMMAND ECHO Will be generated later > libxml++.def
 )
+# NOTE: Multi-configuration generator does not copy folder hierarchy inside of CMAKE_CFG_INTDIR
 add_custom_command(TARGET xmlpp-${XMLMM_VERSION} PRE_LINK
-COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/libxml++.def xml++-${XMLMM_VERSION}${POSTFIX}.dll
+COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/libxml++.def $<TARGET_FILE_NAME:xml++-${XMLMM_VERSION}>
+  ${CMAKE_CURRENT_BINARY_DIR}/$<$<BOOL:${CMAKE_BUILD_TYPE}>:${CMAKE_FILES_DIRECTORY}>/xmlpp-${XMLMM_VERSION}.dir/${CMAKE_CFG_INTDIR}/*.obj
   ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/xmlpp-${XMLMM_VERSION}.dir/*.obj
   ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/xmlpp-${XMLMM_VERSION}.dir/io/*.obj 
   ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/xmlpp-${XMLMM_VERSION}.dir/nodes/*.obj 
@@ -65,7 +67,7 @@ LIBRARY DESTINATION "lib"
 ARCHIVE DESTINATION "lib"
 RUNTIME DESTINATION "bin")
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/xml++-${XMLMM_VERSION}${POSTFIX}.pdb DESTINATION "bin" CONFIGURATIONS DEBUG)
+install(FILES $<TARGET_PDB_FILE:xmlpp-${XMLMM_VERSION}> DESTINATION "bin" CONFIGURATIONS DEBUG)
 
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../${EXTRA}/libxml++/libxml++config.h DESTINATION "lib/libxml++-${XMLMM_VERSION}/include")
 

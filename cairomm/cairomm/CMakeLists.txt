@@ -28,12 +28,12 @@ add_custom_command (OUTPUT cairomm.def
 COMMAND ECHO Will be generated later > cairomm.def
 )
 add_custom_command(TARGET cairomm-${CAIROMM_VERSION} PRE_LINK
-COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/cairomm.def cairomm-${CAIROMM_VERSION}${POSTFIX}.dll ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/cairomm-${CAIROMM_VERSION}.dir/*.obj
+COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/cairomm.def $<TARGET_FILE_NAME:cairomm-${CAIROMM_VERSION}> ${CMAKE_CURRENT_BINARY_DIR}/$<$<BOOL:${CMAKE_BUILD_TYPE}>:${CMAKE_FILES_DIRECTORY}>/cairomm-${CAIROMM_VERSION}.dir/${CMAKE_CFG_INTDIR}/*.obj
 )
 
 target_link_libraries(cairomm-${CAIROMM_VERSION} cairo.lib cairo-gobject.lib sigc-${SIGC_VERSION})
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/cairomm-${CAIROMM_VERSION}${POSTFIX}.pdb DESTINATION "bin" CONFIGURATIONS DEBUG)
+install(FILES $<TARGET_PDB_FILE:cairomm-${CAIROMM_VERSION}> DESTINATION "bin" CONFIGURATIONS DEBUG)
 
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../${EXTRA}/cairomm/cairommconfig.h DESTINATION "lib/cairomm-${CAIROMM_VERSION}/include")
 

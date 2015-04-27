@@ -31,7 +31,7 @@ add_custom_command (OUTPUT gdkmm.def
 COMMAND echo Will be generated later > gdkmm.def
 )
 add_custom_command(TARGET gdkmm-${GTKMM_VERSION} PRE_LINK
-COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/gdkmm.def gdkmm-${GTKMM_VERSION}${POSTFIX}.dll ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/gdkmm-${GTKMM_VERSION}.dir/*.obj
+COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/gdkmm.def $<TARGET_FILE_NAME:gdkmm-${GTKMM_VERSION}> ${CMAKE_CURRENT_BINARY_DIR}/$<$<BOOL:${CMAKE_BUILD_TYPE}>:${CMAKE_FILES_DIRECTORY}>/gdkmm-${GTKMM_VERSION}.dir/${CMAKE_CFG_INTDIR}/*.obj
 )
 
 target_link_libraries(gdkmm-${GTKMM_VERSION} glibmm-${GLIBMM_VERSION} giomm-${GLIBMM_VERSION} sigc-${SIGC_VERSION} cairomm-${CAIROMM_VERSION} gdk-3 gdk_pixbuf-2.0 gtk-3)
@@ -41,7 +41,7 @@ LIBRARY DESTINATION "lib"
 ARCHIVE DESTINATION "lib"
 RUNTIME DESTINATION "bin")
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/gdkmm-${GTKMM_VERSION}${POSTFIX}.pdb DESTINATION "bin" CONFIGURATIONS DEBUG)
+install(FILES $<TARGET_PDB_FILE:gdkmm-${GTKMM_VERSION}> DESTINATION "bin" CONFIGURATIONS DEBUG)
 
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../../${EXTRA}/gdkmm/gdkmmconfig.h DESTINATION "lib/gdkmm-${GTKMM_VERSION}/include")
 
