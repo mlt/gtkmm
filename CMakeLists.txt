@@ -30,6 +30,14 @@ SET(SIGC_DIR_URL http://ftp.gnome.org/pub/GNOME/sources/libsigc++/${SIGC_VERSION
 SET(XMLMM_DIR_URL http://ftp.gnome.org/pub/GNOME/sources/libxml++/${XMLMM_VERSION})
 SET(GSTREAMERMM_DIR_URL http://ftp.gnome.org/pub/GNOME/sources/gstreamermm/${GSTREAMERMM_VERSION})
 
+set (GlibEtcInstallRoot C:/msys64/mingw32 CACHE PATH "GlibEtcInstallRoot")
+set (CMAKE_INSTALL_PREFIX C:/gtkmm CACHE PATH "Installation prefix" FORCE)
+
+find_program(PATCH patch ${GlibEtcInstallRoot}/../usr/bin)
+if(PATCH_NOTFOUND)
+  message(FATAL_ERROR "Can't find patch tool")
+endif()
+
 GET(${ATKMM_DIR_URL}/${ATKMM_DIR}.tar.xz)
 GET(${CAIROMM_DIR_URL}/${CAIROMM_DIR}.tar.gz)
 GET(${GLIBMM_DIR_URL}/${GLIBMM_DIR}.tar.xz)
@@ -39,7 +47,7 @@ GET(${SIGC_DIR_URL}/${SIGC_DIR}.tar.xz)
 GET(${XMLMM_DIR_URL}/${XMLMM_DIR}.tar.xz)
 GET(${GSTREAMERMM_DIR_URL}/${GSTREAMERMM_DIR}.tar.xz)
 GET_VERSION(${GSTREAMERMM_DIR} GSTREAMERMM_MAJOR_VERSION GSTREAMERMM_MINOR_VERSION GSTREAMERMM_MICRO_VERSION)
-execute_process(COMMAND patch -p0 -i ${CMAKE_CURRENT_SOURCE_DIR}/patches/gstreamer_mp_player_window_cc.patch
+execute_process(COMMAND ${PATCH} -p0 -i ${CMAKE_CURRENT_SOURCE_DIR}/patches/gstreamer_mp_player_window_cc.patch
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${GSTREAMERMM_DIR})
 configure_file(patches/gstreamermmconfig.h.in ${CMAKE_CURRENT_SOURCE_DIR}/${GSTREAMERMM_DIR}/gstreamer/gstreamermmconfig.h @ONLY)
 
@@ -79,9 +87,6 @@ endif()
 string(TOUPPER ${CMAKE_BUILD_TYPE} BT)
 set(POSTFIX ${CMAKE_${BT}_POSTFIX})
 message("Postfix is ${POSTFIX}")
-
-set (GlibEtcInstallRoot C:/msys64/mingw32 CACHE PATH "GlibEtcInstallRoot")
-set (CMAKE_INSTALL_PREFIX C:/gtkmm CACHE PATH "Installation prefix" FORCE)
 
 add_definitions( -DG_HAVE_ISO_VARARGS )
 add_definitions( /wd4273 /wd4290 /wd4250 )
