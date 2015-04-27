@@ -82,7 +82,7 @@ string(TOUPPER ${CMAKE_BUILD_TYPE} BT)
 set(POSTFIX ${CMAKE_${BT}_POSTFIX})
 message("Postfix is ${POSTFIX}")
 
-set (GlibEtcInstallRoot ${CMAKE_CURRENT_SOURCE_DIR}/usr/i686-w64-mingw32/sys-root/mingw CACHE PATH "GlibEtcInstallRoot")
+set (GlibEtcInstallRoot C:/msys64/mingw32 CACHE PATH "GlibEtcInstallRoot")
 set (CMAKE_INSTALL_PREFIX C:/gtkmm CACHE PATH "Installation prefix" FORCE)
 
 add_definitions( -DG_HAVE_ISO_VARARGS )
