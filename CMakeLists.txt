@@ -34,14 +34,14 @@ GET(${ATKMM_DIR_URL}/${ATKMM_DIR}.tar.xz)
 GET(${CAIROMM_DIR_URL}/${CAIROMM_DIR}.tar.gz)
 GET(${GLIBMM_DIR_URL}/${GLIBMM_DIR}.tar.xz)
 GET(${GTKMM_DIR_URL}/${GTKMM_DIR}.tar.xz)
-execute_process(COMMAND patch -p0 --binary -i ${CMAKE_CURRENT_SOURCE_DIR}/patches/gtkmm_demowindow_cc.patch
+execute_process(COMMAND patch -p0 -i ${CMAKE_CURRENT_SOURCE_DIR}/patches/gtkmm_demowindow_cc.patch
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${GTKMM_DIR})
 GET(${PANGOMM_DIR_URL}/${PANGOMM_DIR}.tar.xz)
 GET(${SIGC_DIR_URL}/${SIGC_DIR}.tar.xz)
 GET(${XMLMM_DIR_URL}/${XMLMM_DIR}.tar.xz)
 GET(${GSTREAMERMM_DIR_URL}/${GSTREAMERMM_DIR}.tar.xz)
 GET_VERSION(${GSTREAMERMM_DIR} GSTREAMERMM_MAJOR_VERSION GSTREAMERMM_MINOR_VERSION GSTREAMERMM_MICRO_VERSION)
-execute_process(COMMAND patch -p0 --binary -i ${CMAKE_CURRENT_SOURCE_DIR}/patches/gstreamer_mp_player_window_cc.patch
+execute_process(COMMAND patch -p0 -i ${CMAKE_CURRENT_SOURCE_DIR}/patches/gstreamer_mp_player_window_cc.patch
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${GSTREAMERMM_DIR})
 configure_file(patches/gstreamermmconfig.h.in ${CMAKE_CURRENT_SOURCE_DIR}/${GSTREAMERMM_DIR}/gstreamer/gstreamermmconfig.h @ONLY)
 
