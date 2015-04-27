@@ -11,15 +11,17 @@ from os.path import join, getsize
 from subprocess import Popen, PIPE
 
 def gen(dll,lib,d):
-    output = Popen(["nm", lib], stdout=PIPE).communicate()[0]
+    output = Popen(["dumpbin", "-exports", dll], stdout=PIPE).communicate()[0]
     with open(d, "wb") as f:
         f.write(b"EXPORTS\n")
-        for line in output.split(b"\r\n"):
-            if (re.match(b".* T _|.* I __nm", line)): #|.* I __imp
-                line = re.sub(b"^.* T _|^.* I __nm__", b"", line) #|^.* I _
-                # msvcrt.dll on windows misses secure versions of common CRT functions
-                if not ("msvcrt.dll" == dll and line.endswith(b"_s")):
-                    f.write(line + b"\n")
+        lines = output.splitlines()
+        for line in lines[19:]:
+            if line != "" and line[0] == " ":
+                cols = line.split()
+                if len(cols)==4 and cols[0].isdigit():
+                    # msvcrt.dll on windows misses secure versions of common CRT functions
+                    if not ("msvcrt.dll" == dll and cols[3].endswith(b"_s")):
+                        f.write(cols[3] + b"\n")
         f.write(str.encode("LIBRARY %s\n" % dll))
 
 def walk(root):
@@ -34,7 +36,7 @@ def walk(root):
                 if not os.path.exists(d):
                     print("Working on %s to produce %s\n" % (f, d))
                     lib = "lib%s.dll.a" % name
-                    gen(f, lib, d)
+                    gen(join(root, f), lib, d)
                 Popen(["lib", "/def:%s" % d, "/name:%s" % f]).communicate()
 
 def get_parser():
