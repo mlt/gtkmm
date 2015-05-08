@@ -75,6 +75,7 @@ menumodel.cc
 mount.cc
 mountoperation.cc
 networkaddress.cc
+networkmonitor.cc
 networkservice.cc
 notification.cc
 outputstream.cc
@@ -91,6 +92,7 @@ seekable.cc
 settings.cc
 simpleaction.cc
 simpleactiongroup.cc
+simpleiostream.cc
 simplepermission.cc
 slot_async.cc
 socket.cc
