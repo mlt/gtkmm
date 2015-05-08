@@ -123,17 +123,9 @@ zlibdecompressor.cc
 )
 
 add_definitions( -DGIOMM_DLL -DGIOMM_BUILD -D_WINDLL -DG_HAVE_ISO_VARARGS )
-add_library(giomm-${GLIBMM_VERSION} SHARED ${GIOMM_SRCS} giomm.def ../../${EXTRA}/giomm/giomm.rc)
+add_library(giomm-${GLIBMM_VERSION} SHARED ${GIOMM_SRCS} ../../${EXTRA}/giomm/giomm.rc)
 target_link_libraries(giomm-${GLIBMM_VERSION} glib-2.0.dll gobject-2.0.dll gmodule-2.0.dll
 gio-2.0.dll sigc-${SIGC_VERSION} glibmm-${GLIBMM_VERSION})
-
-#add_custom_target(giommdef DEPENDS gendef giomm.def )
-add_custom_command (OUTPUT giomm.def
-COMMAND ECHO Will be generated later > giomm.def
-)
-add_custom_command(TARGET giomm-${GLIBMM_VERSION} PRE_LINK
-COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/giomm.def $<TARGET_FILE_NAME:giomm-${GLIBMM_VERSION}> ${CMAKE_CURRENT_BINARY_DIR}/$<$<BOOL:${CMAKE_BUILD_TYPE}>:${CMAKE_FILES_DIRECTORY}>/giomm-${GLIBMM_VERSION}.dir/${CMAKE_CFG_INTDIR}/*.obj
-)
 
 install(TARGETS giomm-${GLIBMM_VERSION}
 LIBRARY DESTINATION "lib"

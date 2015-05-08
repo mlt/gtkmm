@@ -125,7 +125,6 @@ link_directories(
 )
 
 add_subdirectory(${SIGC_DIR}/sigc++)
-add_subdirectory(${GLIBMM_DIR}/${EXTRA}/gendef)
 add_subdirectory(${GLIBMM_DIR}/glib/glibmm)
 add_subdirectory(${GLIBMM_DIR}/gio/giomm)
 add_subdirectory(${ATKMM_DIR}/atk/atkmm)

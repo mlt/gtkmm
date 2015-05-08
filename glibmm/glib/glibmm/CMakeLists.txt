@@ -68,14 +68,7 @@ wrap_init.cc
 )
 
 add_definitions( -DGLIBMM_DLL -DGLIBMM_BUILD -D_WINDLL -DG_HAVE_ISO_VARARGS )
-add_library(glibmm-${GLIBMM_VERSION} SHARED ${GLIBMM_SRCS} glibmm.def ../../${EXTRA}/glibmm/glibmm.rc)
-
-add_custom_command (OUTPUT glibmm.def
-COMMAND echo Will be generated later > glibmm.def
-)
-add_custom_command(TARGET glibmm-${GLIBMM_VERSION} PRE_LINK
-COMMAND	gendef ${CMAKE_CURRENT_BINARY_DIR}/glibmm.def $<TARGET_FILE_NAME:glibmm-${GLIBMM_VERSION}> ${CMAKE_CURRENT_BINARY_DIR}/$<$<BOOL:${CMAKE_BUILD_TYPE}>:${CMAKE_FILES_DIRECTORY}>/glibmm-${GLIBMM_VERSION}.dir/${CMAKE_CFG_INTDIR}/*.obj
-)
+add_library(glibmm-${GLIBMM_VERSION} SHARED ${GLIBMM_SRCS} ../../${EXTRA}/glibmm/glibmm.rc)
 
 target_link_libraries(glibmm-${GLIBMM_VERSION} glib-2.0.lib gobject-2.0.lib gmodule-2.0.lib
 gio-2.0.lib sigc-${SIGC_VERSION})
